@@ -42,7 +42,7 @@ class SimpleForm extends Component {
     }
   }
 
-  SimpleForm.PropTypes = {
+  SimpleForm.propTypes = {
       changeText: PropTypes.func.isRequired
   }
 

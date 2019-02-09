@@ -12,7 +12,7 @@ class SimpleText extends Component {
   }
 }
 
-SimpleText.PropTypes = {
+SimpleText.propTypes = {
     text: PropTypes.string.isRequired
 }
 
