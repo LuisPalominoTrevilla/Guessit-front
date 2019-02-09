@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from 'assets/icons/logo.svg';
 import './App.scss';
 
 class SimpleForm extends Component {
