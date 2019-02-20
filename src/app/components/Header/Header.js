@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import './Header.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { showHideMenu } from 'reduxConf/actions/clickActions';
+import { showHideMenu, showHideLogIn } from 'reduxConf/actions/clickActions';
+import LogIn from '../LogIn/LogIn';
 
 class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            showMenu: true
+            showMenu: true,
+            showLogIn: true
         }
-        this.onClick = this.onClick.bind(this);
     }
     onClick() {
         this.setState({
@@ -20,6 +21,13 @@ class Header extends Component {
         this.props.showHideMenu(this.state.showMenu);
         
     }
+    onClickLogIn() {
+        this.setState({
+            showLogIn: !this.state.showLogIn
+        });
+
+        this.props.showHideLogIn(this.state.showLogIn);
+    }
 
     render() {
         return (
@@ -27,7 +35,8 @@ class Header extends Component {
                 <div className={this.state.showMenu ? 'no-header-menu' : 'header-menu-tablet'}></div>
                 <i className={this.state.showMenu ? 'fa fa-bars icon-header menu-bar' : 'fa fa-bars icon-header menu-bar icon-above'} onClick={(e) => this.onClick()} value= {this.state.showMenu} ></i>
                 <div class="tittle px-3">GuessIt!</div>
-                <i class="fa fa-user-circle-o icon-header mr-3"></i>
+                <i class="fa fa-user-circle-o icon-header mr-3" onClick={(e) => this.onClickLogIn()}></i>
+                <LogIn/>
             </div>
 
         )
@@ -35,7 +44,8 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-    showHideMenu: PropTypes.func.isRequired
+    showHideMenu: PropTypes.func.isRequired,
+    showHideLogIn: PropTypes.func.isRequired
 }
 
-export default connect(null, {showHideMenu})(Header);
+export default connect(null, {showHideMenu, showHideLogIn })(Header);

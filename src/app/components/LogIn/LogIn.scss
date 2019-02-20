@@ -1,0 +1,71 @@
+@import '../base.scss';
+
+.login-container {
+    position: fixed;
+    top: 2.5rem;
+    border: solid 1px $menu-colors;
+    border-radius: 5px;
+    font-family: "Courier New";
+}
+
+.input-form {
+    border-width: 0 0 1px 0;
+    border-color: $menu-colors;
+}
+
+.icon {
+    color: $menu-colors;
+    border-bottom: solid 1px $menu-colors;
+    padding-bottom: .45rem;
+}
+
+.submit-button {
+    border: solid 1px $menu-colors;
+    border-radius: 5px;
+    color: $menu-colors;
+    background-color: white;
+    font-size: 10px;
+    &:active {
+        background-color: $menu-colors;
+        color: white;
+    }
+}
+
+.unselected {
+    border-bottom: solid 1px $menu-colors;
+}
+
+.arrow-up {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 0px; 
+    height: 0px; 
+    border-left: .5rem solid transparent;
+    border-right: .5rem solid transparent;
+    border-bottom: .5rem solid $menu-colors;
+}
+
+.login-labels {
+    color: $menu-colors; 
+}
+
+.show-log-in {
+    display: block;
+}
+
+.hide-log-in {
+    display: none;
+}
+
+@media (max-width: $max-width-tablet) {
+    .login-container{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 17rem;
+    }
+    .arrow-up {
+        display: none;
+    }
+}
