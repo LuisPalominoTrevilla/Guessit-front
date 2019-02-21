@@ -2,7 +2,7 @@
 
 .login-container {
     position: fixed;
-    top: 2.5rem;
+    top: 3rem;
     border: solid 1px $menu-colors;
     border-radius: 5px;
     font-family: "Courier New";
@@ -37,8 +37,8 @@
 
 .arrow-up {
     position: fixed;
-    top: 2rem;
-    right: 2rem;
+    top: 2.5rem;
+    right: 2.5rem;
     width: 0px; 
     height: 0px; 
     border-left: .5rem solid transparent;
@@ -56,6 +56,10 @@
 
 .hide-log-in {
     display: none;
+}
+
+.error-message {
+    color: red;
 }
 
 @media (max-width: $max-width-tablet) {

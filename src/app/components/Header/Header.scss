@@ -6,6 +6,10 @@
 
 .icon-header {
     color: $menu-colors;
+    font-size: 2rem;
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 .menu-bar {
@@ -21,10 +25,15 @@
     display: none;
 }
 
-.nav-link{
+.nav-link {
     &:visited {
         background-color: red;
     }
+}
+.image {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 2rem;
 }
 
 @media (max-width: $max-width-tablet) {
@@ -36,6 +45,9 @@
     .icon-header {
         color: white;
         z-index: 10;
+        &:hover{
+            cursor: pointer;
+        }
     }
 
     .tittle {

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Images = () => {
-    return (
-        <p> Images </p>
-    )
+class Images extends Component {
+    render() {
+        return(<p> Images </p>)
+    }
 }
 
 export default Images;

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { showHideMenu, showHideLogIn } from 'reduxConf/actions/clickActions';
 import LogIn from '../LogIn/LogIn';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     constructor(props) {
@@ -12,7 +13,10 @@ class Header extends Component {
             showMenu: true,
             showLogIn: true
         }
+        this.onClick = this.onClick.bind(this);
+        this.onClickLogIn = this.onClickLogIn.bind(this);
     }
+    
     onClick() {
         this.setState({
             showMenu: !this.state.showMenu
@@ -31,11 +35,14 @@ class Header extends Component {
 
     render() {
         return (
-            <div class="navbar d-flex">
+            <div className="navbar d-flex">
                 <div className={this.state.showMenu ? 'no-header-menu' : 'header-menu-tablet'}></div>
                 <i className={this.state.showMenu ? 'fa fa-bars icon-header menu-bar' : 'fa fa-bars icon-header menu-bar icon-above'} onClick={(e) => this.onClick()} value= {this.state.showMenu} ></i>
-                <div class="tittle px-3">GuessIt!</div>
-                <i class="fa fa-user-circle-o icon-header mr-3" onClick={(e) => this.onClickLogIn()}></i>
+                <div className="tittle px-3">GuessIt!</div>
+                <i  className={this.props.user.user.image ? ' d-none' : 'fa fa-user-circle-o icon-header mr-3'} onClick={(e) => this.onClickLogIn()}></i>
+                <Link to='/profile' className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'}>
+                <img className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'} src={this.props.user.user.image ? this.props.user.user.image : ''}></img>
+                </Link>
                 <LogIn/>
             </div>
 
@@ -45,7 +52,12 @@ class Header extends Component {
 
 Header.propTypes = {
     showHideMenu: PropTypes.func.isRequired,
-    showHideLogIn: PropTypes.func.isRequired
+    showHideLogIn: PropTypes.func.isRequired,
+    user : PropTypes.object.isRequired,
 }
 
-export default connect(null, {showHideMenu, showHideLogIn })(Header);
+const mapStateToProps = (state) => ({
+    user: state.user,
+});
+
+export default connect(mapStateToProps, {showHideMenu, showHideLogIn })(Header);
