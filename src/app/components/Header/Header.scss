@@ -1,0 +1,81 @@
+@import '../base.scss';
+
+.tittle {
+    color: $menu-colors;
+}
+
+.icon-header {
+    color: $menu-colors;
+    font-size: 2rem;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.menu-bar {
+    display: none;
+}
+
+.navbar {
+    justify-content: flex-end;
+    font-family: "Courier New";
+}
+
+.header-menu-tablet {
+    display: none;
+}
+
+.nav-link {
+    &:visited {
+        background-color: red;
+    }
+}
+.image {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 2rem;
+}
+
+@media (max-width: $max-width-tablet) {
+    .navbar {
+        background-color: $menu-colors;
+        justify-content: space-between;
+    }
+
+    .icon-header {
+        color: white;
+        z-index: 10;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    .tittle {
+        color: white;
+        align-self: center;
+    }
+
+    .menu-bar {
+        display: block
+    }
+
+    .header-menu-tablet {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2.5rem;
+        width: 70%;
+        background-color: white;
+        border-right: 1px solid $menu-colors;
+        border-left: 1px solid $menu-colors;
+    }
+
+    .no-header-menu {
+        display: none;
+    }
+
+    .icon-above {
+        color: $menu-colors;
+    }
+}

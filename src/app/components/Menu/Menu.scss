@@ -1,0 +1,64 @@
+@import '../base.scss';
+
+.sidebar {
+    display: flex;
+    position: fixed;
+    background-color: $menu-colors;
+    height: 100%;
+    top: 0;
+    z-index: 12;
+}
+
+.icon-mobile {
+    color: white;
+    align-self: center;
+}
+
+.menu-labels {
+    display: none;
+}
+.active {
+    background-color: $active-menu;
+}
+
+@media (max-width: $max-width-tablet) {
+    .sidebar {
+        width: 70%;
+        top: 2.5rem;
+        z-index: 10;
+        background-color: white;
+        border-right: 1px solid $menu-colors;
+        border-left: 1px solid $menu-colors;
+    }
+
+    .menu-labels {
+        display: block;
+    }
+
+    .show-menu {
+        display: block!important;
+    }
+
+    .hide-menu {
+        display: none;
+    }
+
+    .icon-mobile {
+        color: $menu-colors;
+        align-self: center;
+    }
+
+    .navbar-nav {
+        width: 100%;
+    }
+
+    .nav-link {
+        color: $menu-colors;
+        border-bottom: 1px solid $menu-colors;
+    }
+
+    .active {
+        background-color: transparent;
+    }
+
+}

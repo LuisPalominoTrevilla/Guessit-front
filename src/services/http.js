@@ -8,13 +8,17 @@ http.successCallback = response => {
     return response;
 }
 
+http.setToken = token => {
+    http.defaults.headers.common['Authorization'] = `Bearer ${token}`; 
+}
+
 const interceptResErrors = err => {
     console.log('err', err);
     try {
         err = Object.assign(new Error(), err.response.data.error);
-      } catch (e) {
+    } catch (e) {
     }
-    return Promise.reject(err);
+      return Promise.reject(err);
 };
 
 
