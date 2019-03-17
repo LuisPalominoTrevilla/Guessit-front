@@ -36,11 +36,16 @@
     }
 
     .show-menu {
-        display: block!important;
+        .sidebar {
+            -webkit-animation: sidenavOpen .2s; /* Safari 4.0 - 8.0 */
+            animation: sidenavOpen .2s;
+        }
     }
 
     .hide-menu {
-        display: none;
+        .sidebar {
+            left: -70%;
+        }
     }
 
     .icon-mobile {

@@ -2,3 +2,13 @@ $menu-colors: #153D52;
 $active-menu: #6A9591;
 $max-width-tablet: 768px;
 $max-with-mobile: 425px;
+
+@-webkit-keyframes sidenavOpen {
+    from {left: -70%;}
+    to {left: 0;}
+}
+
+@keyframes sidenavOpen {
+    from {left: -70%;}
+    to {left: 0;}
+}

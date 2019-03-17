@@ -36,12 +36,12 @@ class Header extends Component {
     render() {
         return (
             <div className="navbar d-flex">
-                <div className={this.state.showMenu ? 'no-header-menu' : 'header-menu-tablet'}></div>
+                <div className={this.state.showMenu ? 'no-header-menu' : 'header-menu-tablet'}><div className="sidenav-header"></div></div>
                 <i className={this.state.showMenu ? 'fa fa-bars icon-header menu-bar' : 'fa fa-bars icon-header menu-bar icon-above'} onClick={(e) => this.onClick()} value= {this.state.showMenu} ></i>
                 <div className="tittle px-3">GuessIt!</div>
                 <i  className={this.props.user.user.image ? ' d-none' : 'fa fa-user-circle-o icon-header mr-3'} onClick={(e) => this.onClickLogIn()}></i>
                 <Link to='/profile' className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'}>
-                <img className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'} src={this.props.user.user.image ? this.props.user.user.image : ''}></img>
+                <img className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'} alt="imágen de perfil" src={this.props.user.user.image ? this.props.user.user.image : ''}></img>
                 </Link>
                 <LogIn/>
             </div>
