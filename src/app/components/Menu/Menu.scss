@@ -21,6 +21,12 @@
     background-color: $active-menu;
 }
 
+.navbar-nav {
+    .nav-item {
+        cursor: pointer;
+    }
+}
+
 @media (max-width: $max-width-tablet) {
     .sidebar {
         width: 70%;

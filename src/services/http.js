@@ -8,7 +8,11 @@ http.successCallback = response => {
 }
 
 http.setToken = token => {
-    http.defaults.headers.common['Authorization'] = `Bearer ${token}`; 
+    http.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
+
+http.removeToken = () => {
+    http.defaults.headers.common['Authorization'] = '';
 }
 
 const interceptResErrors = err => {

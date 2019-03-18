@@ -1,4 +1,4 @@
-import { SET_USER } from 'reduxConf/actions/types';
+import { SET_USER, REMOVE_USER } from 'reduxConf/actions/types';
 
 const initialState = {
     user: {}
@@ -11,6 +11,11 @@ export default function(state = initialState, action) {
                 ...state,
                 user: action.payload
             };
+        case REMOVE_USER:
+            return {
+                ...state,
+                user: {}
+            }
         default:
             return state;
     }
