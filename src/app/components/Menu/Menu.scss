@@ -49,6 +49,10 @@
     }
 
     .hide-menu {
+        &.enable-sidenav-transition .sidebar {
+            -webkit-animation: sidenavClose .1s; /* Safari 4.0 - 8.0 */
+            animation: sidenavClose .1s;
+        }
         .sidebar {
             left: -70%;
         }

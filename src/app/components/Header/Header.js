@@ -11,7 +11,8 @@ class Header extends Component {
         super(props)
         this.state = {
             showMenu: true,
-            showLogIn: true
+            showLogIn: true,
+            isInitial: true
         }
         this.onClick = this.onClick.bind(this);
         this.onClickLogIn = this.onClickLogIn.bind(this);
@@ -19,7 +20,8 @@ class Header extends Component {
     
     onClick() {
         this.setState({
-            showMenu: !this.state.showMenu
+            showMenu: !this.state.showMenu,
+            isInitial: false
         });
 
         this.props.showHideMenu(this.state.showMenu);
@@ -36,7 +38,7 @@ class Header extends Component {
     render() {
         return (
             <div className="navbar d-flex">
-                <div className={this.state.showMenu ? 'no-header-menu' : 'header-menu-tablet'}><div className="sidenav-header"></div></div>
+                <div className={`${this.state.showMenu ? 'no-header-menu' : 'header-menu-tablet'} ${this.state.isInitial ? '' : 'enable-sidenav-transition'}`}><div className="sidenav-header"></div></div>
                 <i className={this.state.showMenu ? 'fa fa-bars icon-header menu-bar' : 'fa fa-bars icon-header menu-bar icon-above'} onClick={(e) => this.onClick()} value= {this.state.showMenu} ></i>
                 <div className="tittle px-3">GuessIt!</div>
                 <i  className={this.props.user.user.image ? ' d-none' : 'fa fa-user-circle-o icon-header mr-3'} onClick={(e) => this.onClickLogIn()}></i>

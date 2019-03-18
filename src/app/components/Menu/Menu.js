@@ -42,7 +42,7 @@ class Menu extends Component {
 
     render() {
         return (
-            <div className={this.props.showMenu.show ? 'show-menu' : 'hide-menu'}>
+            <div className={`${this.props.showMenu.show ? 'show-menu' : 'hide-menu'} ${this.props.showMenu.isInitial ? '' : 'enable-sidenav-transition'}`}>
                 <div className ='sidebar'  >
                     <ul className="navbar-nav">
                         <li className ={this.props.location.pathname === '/' ? 'nav-item py-1 active' : 'nav-item py-1'} >

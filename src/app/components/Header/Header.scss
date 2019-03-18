@@ -80,7 +80,11 @@
     }
 
     .no-header-menu {
-        display: none;
+        position: absolute;
+        &.enable-sidenav-transition .sidenav-header {
+            -webkit-animation: sidenavClose .1s; /* Safari 4.0 - 8.0 */
+            animation: sidenavClose .1s;
+        }
         .sidenav-header {
             left: -70%;
         }

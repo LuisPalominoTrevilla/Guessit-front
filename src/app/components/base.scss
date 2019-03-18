@@ -12,3 +12,13 @@ $max-with-mobile: 425px;
     from {left: -70%;}
     to {left: 0;}
 }
+
+@-webkit-keyframes sidenavClose {
+    from {left: 0;}
+    to {left: -70%;}
+}
+
+@keyframes sidenavClose {
+    from {left: 0;}
+    to {left: -70%;}
+}
