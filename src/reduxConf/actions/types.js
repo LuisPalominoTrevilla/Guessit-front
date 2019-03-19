@@ -4,3 +4,4 @@ export const SET_MENU_VALUE = 'SET_MENU_VALUE';
 export const SET_LOG_VALUE = 'SET_LOG_VALUE';
 export const SET_USER = 'SET_USER';
 export const REMOVE_USER = 'REMOVE_USER';
+export const SET_REG_VALUE = 'SET_REG_VALUE';
