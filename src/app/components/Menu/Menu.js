@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import http from 'services/http';
+
+import {removeUser} from 'reduxConf/actions/userActions';
 
 class Menu extends Component {
     constructor(props){
@@ -25,14 +28,26 @@ class Menu extends Component {
         });
     }
 
+    logout() {
+        http.post('/User/Logout')
+            .then(res => {
+                http.removeToken();
+                this.props.removeUser();
+                this.props.history.push('/');
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
     render() {
         return (
-            <div className={this.props.showMenu.show ? 'show-menu' : 'hide-menu'}>
+            <div className={`${this.props.showMenu.show ? 'show-menu' : 'hide-menu'} ${this.props.showMenu.isInitial ? '' : 'enable-sidenav-transition'}`}>
                 <div className ='sidebar'  >
                     <ul className="navbar-nav">
                         <li className ={this.props.location.pathname === '/' ? 'nav-item py-1 active' : 'nav-item py-1'} >
                             <Link to="/">
-                                <div className ="nav-link d-flex mx-2 1" onClick={this.onClick}> 
+                                <div className ="nav-link d-flex mx-2 1"> 
                                     <i className="fa fa-check icon-mobile mx-2"></i>
                                     <div className ="menu-labels" >GuessIt!</div>
                                 </div>
@@ -47,14 +62,22 @@ class Menu extends Component {
                             </Link>
                         </li>
                         <div className={this.props.user.user.username ? 'd-block': 'd-none'}>
-                        <li className={this.props.location.pathname === '/images' ? 'nav-item py-1 active' : 'nav-item py-1'}>
-                            <Link to="/images">
+                            <li className={this.props.location.pathname === '/images' ? 'nav-item py-1 active' : 'nav-item py-1'}>
+                                <Link to="/images">
+                                    <div className="nav-link d-flex mx-2 3" > 
+                                        <i className="fa fa-picture-o icon-mobile mx-2"></i>
+                                        <div className="menu-labels">Your Images</div>
+                                    </div>
+                                </Link>
+                            </li>
+                        </div>
+                        <div className={this.props.user.user.username ? 'd-block': 'd-none'}>
+                            <li className="nav-item py-1" onClick={() => this.logout()}>
                                 <div className="nav-link d-flex mx-2 3" > 
-                                    <i className="fa fa-picture-o icon-mobile mx-2"></i>
-                                    <div className="menu-labels">Your Images</div>
+                                    <i className="fa fa-sign-out icon-mobile mx-2"></i>
+                                    <div className="menu-labels">Logout</div>
                                 </div>
-                            </Link>
-                        </li>
+                            </li>
                         </div>
                     </ul>
                 </div>
@@ -64,12 +87,13 @@ class Menu extends Component {
 }
 
 Menu.propTypes = {
-    showMenu : PropTypes.object.isRequired,
-    user : PropTypes.object.isRequired
+    showMenu: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
+    removeUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
     showMenu: state.showMenu,
     user: state.user
 });
-export default withRouter(connect(mapStateToProps, null)(Menu));
+export default withRouter(connect(mapStateToProps, {removeUser})(Menu));

@@ -1,7 +1,8 @@
 import { SET_MENU_VALUE } from 'reduxConf/actions/types';
 
 const initialState = {
-    show: false
+    show: false,
+    isInitial: true
 };
 
 export default function(state = initialState, action) {
@@ -9,7 +10,8 @@ export default function(state = initialState, action) {
         case SET_MENU_VALUE:
             return {
                 ...state,
-                show: action.payload
+                show: action.payload,
+                isInitial: false
             };
         default:
             return state;

@@ -56,11 +56,10 @@
     }
 
     .menu-bar {
-        display: block
+        display: block;
     }
 
-    .header-menu-tablet {
-        display: block;
+    .sidenav-header {
         position: fixed;
         top: 0;
         left: 0;
@@ -71,8 +70,24 @@
         border-left: 1px solid $menu-colors;
     }
 
+    .header-menu-tablet {
+        position: absolute;
+        display: block;
+        .sidenav-header {
+            -webkit-animation: sidenavOpen .2s; /* Safari 4.0 - 8.0 */
+            animation: sidenavOpen .2s;
+        }
+    }
+
     .no-header-menu {
-        display: none;
+        position: absolute;
+        &.enable-sidenav-transition .sidenav-header {
+            -webkit-animation: sidenavClose .1s; /* Safari 4.0 - 8.0 */
+            animation: sidenavClose .1s;
+        }
+        .sidenav-header {
+            left: -70%;
+        }
     }
 
     .icon-above {

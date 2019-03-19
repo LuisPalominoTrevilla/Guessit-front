@@ -1,4 +1,4 @@
-import { SET_USER } from './types';
+import { SET_USER, REMOVE_USER } from './types';
 
 export const addUser = url => dispatch => {
     dispatch({
@@ -7,4 +7,9 @@ export const addUser = url => dispatch => {
     });
 }
 
-
+export const removeUser = () => dispatch => {
+    console.log('Starting to remove user');
+    dispatch({
+        type: REMOVE_USER
+    });
+}

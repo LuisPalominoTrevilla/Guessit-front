@@ -1,5 +1,4 @@
 import axios from 'axios';
-console.log(`${process.env.REACT_APP_API_URL}`);
 const http = axios.create({
     baseURL: `${process.env.REACT_APP_API_URL}`
 });
@@ -9,7 +8,11 @@ http.successCallback = response => {
 }
 
 http.setToken = token => {
-    http.defaults.headers.common['Authorization'] = `Bearer ${token}`; 
+    http.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
+
+http.removeToken = () => {
+    http.defaults.headers.common['Authorization'] = '';
 }
 
 const interceptResErrors = err => {

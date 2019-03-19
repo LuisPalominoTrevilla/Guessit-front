@@ -21,6 +21,12 @@
     background-color: $active-menu;
 }
 
+.navbar-nav {
+    .nav-item {
+        cursor: pointer;
+    }
+}
+
 @media (max-width: $max-width-tablet) {
     .sidebar {
         width: 70%;
@@ -36,11 +42,20 @@
     }
 
     .show-menu {
-        display: block!important;
+        .sidebar {
+            -webkit-animation: sidenavOpen .2s; /* Safari 4.0 - 8.0 */
+            animation: sidenavOpen .2s;
+        }
     }
 
     .hide-menu {
-        display: none;
+        &.enable-sidenav-transition .sidebar {
+            -webkit-animation: sidenavClose .1s; /* Safari 4.0 - 8.0 */
+            animation: sidenavClose .1s;
+        }
+        .sidebar {
+            left: -70%;
+        }
     }
 
     .icon-mobile {

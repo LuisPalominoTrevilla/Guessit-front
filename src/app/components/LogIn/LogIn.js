@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './LogIn.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import http from '../../../services/http';
+import http from 'services/http';
 import { addUser } from 'reduxConf/actions/userActions';
 import { showHideLogIn } from 'reduxConf/actions/clickActions';
 
