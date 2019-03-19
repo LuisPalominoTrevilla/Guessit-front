@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import http from 'services/http';
 import { addUser } from 'reduxConf/actions/userActions';
-import { showHideRegister } from 'reduxConf/actions/clickActions';
+import { showHideRegister, showHideLogIn } from 'reduxConf/actions/clickActions';
 
 class Register extends Component {
     constructor(props) {
@@ -14,16 +14,17 @@ class Register extends Component {
             lastName: '',
             email: '',
             age: 0,
+            gender: '',
             username: '',
             password: '',
-            error: false,
+            error: false
         }
         this.handleChangeUserName = this.handleChangeUserName.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeLastName = this.handleChangeLastName.bind(this);
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
-        //this.handleChangeGender = this.handleChangeGender.bind(this);
+        this.handleChangeGender = this.handleChangeGender.bind(this);
         this.handleChangeAge = this.handleChangeAge.bind(this);
         this.onRegister = this.onRegister.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
@@ -44,7 +45,7 @@ class Register extends Component {
 
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            if(this.props.showRegister.show){
+            if(this.props.showRegister){
                 this.props.showHideRegister(this.state.show);
             }
         }
@@ -77,7 +78,12 @@ class Register extends Component {
     }
     handleChangeEmail(e){
         this.setState({
-            password: e.target.value
+            email: e.target.value
+          })
+    }
+    handleChangeGender(e){
+        this.setState({
+            gender: e.target.value
           })
     }
     onRegister(e) {
@@ -116,15 +122,23 @@ class Register extends Component {
         });
     }
 
+    onClickLogIn() {
+        this.setState({
+            showLogIn: !this.state.showLogIn
+        });
+
+        this.props.showHideLogIn(this.state.showLogIn);
+    }
+
     render() {
         return (
-            <div ref={this.setWrapperRef} className={this.props.showRegister.show ? 'login-container px-3 pt-4 pb-5 show-log-in' : 'login-container px-3 pt-4 pb-5 hide-log-in'}>
+            <div ref={this.setWrapperRef} className={this.props.showRegister ? 'login-container px-3 pt-4 pb-5 show-log-in' : 'login-container px-3 pt-4 pb-5 hide-log-in'}>
                 <div className="arrow-up"/>
                     <div className = "login-nav">
                         <ul className="navbar-nav d-flex flex-row">
                             <li>
-                                <a href="/"> 
-                                    <div className ="login-labels px-3 ml-2 mr-2 unselected">Log In </div>
+                                <a> 
+                                    <div className ="login-labels px-3 ml-2 mr-2 unselected" onClick={(e) => this.onClickRegister()}>Log In </div>
                                 </a>
                             </li>
                             <li>
@@ -179,7 +193,7 @@ class Register extends Component {
                                 className="input-form" 
                                 id="username" 
                                 value={this.state.username}
-                                onChange={this.handleChangeUserName}/>
+                                onChange={this.handleChangeName}/>
                         </div>
                         <div className="py-2">
                             <i className="fa fa-key icon pr-2"></i>
@@ -191,25 +205,35 @@ class Register extends Component {
                                 type= "password"
                                 onChange={this.handleChangePassword}/>
                         </div>
+                        <div className="py-2">
+                            <i className="fa fa-id-card icon pr-2"></i>
+                            <select className="fa-select">
+                                <option onChange={this.handleChangeGender} value={"Male"}>Male</option>
+                                <option onChange={this.handleChangeGender} value={"Female"}>Female</option>
+                            </select>
+                        </div>
                     </div>
-                        <button 
-                            type="submit" 
-                            className="submit-button px-5 py-2"
-                            onClick ={this.onSubmitUser}> 
-                            REGISTER 
-                        </button>
-            </div>
+                    <button 
+                        type="submit" 
+                        className="submit-button px-5 py-2"
+                        onClick ={this.onSubmitUser}> 
+                        REGISTER 
+                    </button>
+                </div>
 
         )
     }
 }
 
 Register.propTypes = {
-    showRegister: PropTypes.object.isRequired,
+    showRegister : PropTypes.object.isRequired,
+    showLogIn: PropTypes.object.isRequired,
+    showHideLogIn: PropTypes.func.isRequired,
     addUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    showRegister: state.showRegister
+    showRegister: state.showRegister,
+    showLogIn: state.showLogIn,
 });
 export default connect(mapStateToProps, {showHideRegister, addUser})(Register);
