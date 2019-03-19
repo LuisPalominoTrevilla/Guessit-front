@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import http from 'services/http';
 import { addUser } from 'reduxConf/actions/userActions';
-import { showHideLogIn } from 'reduxConf/actions/clickActions';
+import { showHideLogIn, showHideRegister } from 'reduxConf/actions/clickActions';
 
 class LogIn extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class LogIn extends Component {
             username: '',
             password: '',
             user: '',
-            error: false,
+            error: false
         }
         this.handleChangeUserName = this.handleChangeUserName.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -82,6 +82,14 @@ class LogIn extends Component {
         });
     }
 
+    onClickRegister() {
+        this.setState({
+            showRegister: !this.state.showRegister
+        });
+
+        this.props.showHideRegister(this.state.showRegister);
+    }
+
     render() {
         return (
             <div ref={this.setWrapperRef} className={this.props.showLogIn.show ? 'login-container px-3 pt-4 pb-5 show-log-in' : 'login-container px-3 pt-4 pb-5 hide-log-in'}>
@@ -94,8 +102,8 @@ class LogIn extends Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="/"> 
-                                    <div className ="login-labels px-3 mr-2 ml-w unselected">Register </div>
+                                <a> 
+                                    <div className ="login-labels px-3 mr-2 ml-w unselected" onClick={(e) => this.onClickRegister()}>Register </div>
                                 </a>
                             </li>
                         </ul>
@@ -127,17 +135,21 @@ class LogIn extends Component {
                     className="submit-button px-5 py-2"
                     onClick ={this.onSubmitUser}> SUBMIT </button>
             </div>
-
         )
     }
 }
 
 LogIn.propTypes = {
     showLogIn : PropTypes.object.isRequired,
+    showRegister : PropTypes.object.isRequired,
+    showHideRegister: PropTypes.func.isRequired,
     addUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    showLogIn: state.showLogIn
+    showLogIn: state.showLogIn,
+    showRegister: state.showRegister,
+    showHideRegister: state.showHideRegister
 });
+
 export default connect(mapStateToProps, {showHideLogIn, addUser})(LogIn);
