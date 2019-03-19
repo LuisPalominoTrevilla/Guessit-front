@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './Header.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { showHideMenu, showHideLogIn } from 'reduxConf/actions/clickActions';
+import { showHideMenu, showHideLogIn, showHideRegister } from 'reduxConf/actions/clickActions';
 import LogIn from '../LogIn/LogIn';
+import Register from '../Register/Register';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
@@ -12,10 +13,12 @@ class Header extends Component {
         this.state = {
             showMenu: true,
             showLogIn: true,
+            showRegister: true,
             isInitial: true
         }
         this.onClick = this.onClick.bind(this);
         this.onClickLogIn = this.onClickLogIn.bind(this);
+        this.onClickRegister = this.onClickRegister.bind(this);
     }
     
     onClick() {
@@ -34,6 +37,13 @@ class Header extends Component {
 
         this.props.showHideLogIn(this.state.showLogIn);
     }
+    onClickRegister() {
+        this.setState({
+            showRegister: !this.state.showRegister
+        });
+
+        this.props.showHideRegister(this.state.showRegister);
+    }
 
     render() {
         return (
@@ -46,6 +56,7 @@ class Header extends Component {
                 <img className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'} alt="imágen de perfil" src={this.props.user.user.image ? this.props.user.user.image : ''}></img>
                 </Link>
                 <LogIn/>
+                <Register/>
             </div>
 
         )
@@ -55,6 +66,7 @@ class Header extends Component {
 Header.propTypes = {
     showHideMenu: PropTypes.func.isRequired,
     showHideLogIn: PropTypes.func.isRequired,
+    showHideRegister: PropTypes.func.isRequired,
     user : PropTypes.object.isRequired,
 }
 
@@ -62,4 +74,4 @@ const mapStateToProps = (state) => ({
     user: state.user,
 });
 
-export default connect(mapStateToProps, {showHideMenu, showHideLogIn })(Header);
+export default connect(mapStateToProps, {showHideMenu, showHideLogIn, showHideRegister })(Header);
