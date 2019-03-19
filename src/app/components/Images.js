@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import ImageUpload from './ImageUpload/ImageUpload';
 
 class Images extends Component {
     render() {
-        return(<p> Images </p>)
+        return(
+            <div>
+                <ImageUpload/>
+            </div>
+        )
     }
 }
 
