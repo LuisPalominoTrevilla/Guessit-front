@@ -180,7 +180,7 @@ class Register extends Component {
                             </select>
                         </div>
                     </div>
-                    <div className={this.state.error ? 'error-message py-2': 'd-none'}> username or password incorrect </div>
+                    <div className={this.state.error ? 'error-message py-2': 'd-none'}> Temporary error message - To be changed when error messages are sent in JSON form </div>
                     <button 
                         type="submit" 
                         className="submit-button px-5 py-2"
@@ -201,4 +201,4 @@ const mapStateToProps = (state) => ({
     showHideUserForm: state.showHideUserForm,
     showUserForm: state.showUserForm
 });
-export default connect(mapStateToProps, { showHideUserForm})(Register);
+export default connect(mapStateToProps, { showHideUserForm })(Register);

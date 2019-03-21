@@ -97,7 +97,7 @@ class LogIn extends Component {
                             onChange={this.handleChangePassword}/>
                     </div>
                 </div>
-                <div className={this.state.error ? 'error-message py-2': 'd-none'}> username or password incorrect </div>
+                <div className={this.state.error ? 'error-message py-2': 'd-none'}> Username or password incorrect </div>
                 <button 
                     type="submit" 
                     className="submit-button px-5 py-2"
