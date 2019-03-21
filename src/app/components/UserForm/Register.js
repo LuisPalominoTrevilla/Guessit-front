@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import './Register.scss';
+import './UserForm.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import http from 'services/http';
-import { addUser } from 'reduxConf/actions/userActions';
-import { showHideRegister, showHideLogIn } from 'reduxConf/actions/clickActions';
+import { showHideUserForm } from 'reduxConf/actions/clickActions';
 
 class Register extends Component {
     constructor(props) {
@@ -27,7 +26,6 @@ class Register extends Component {
         this.handleChangeGender = this.handleChangeGender.bind(this);
         this.handleChangeAge = this.handleChangeAge.bind(this);
         this.onRegister = this.onRegister.bind(this);
-        this.handleClickOutside = this.handleClickOutside.bind(this);
         this.setWrapperRef = this.setWrapperRef.bind(this);
     }
     
@@ -41,14 +39,6 @@ class Register extends Component {
     
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClickOutside);
-    }
-
-    handleClickOutside(event) {
-        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            if(this.props.showRegister){
-                this.props.showHideRegister(this.state.show);
-            }
-        }
     }
 
     handleChangeUserName(e){
@@ -89,7 +79,7 @@ class Register extends Component {
     onRegister(e) {
         e.preventDefault();
         this.setState({
-            showRegister: {show: false},
+            showUserForm: {show: false}
         });
         const user = {
             name: this.state.name,
@@ -99,21 +89,21 @@ class Register extends Component {
             lastName: this.state.lastName,
             password: this.state.password,
             gender: this.state.gender,
-            age: this.state.age
+            age: parseInt(this.state.age)
         };
         http.post(`/User/Register`, { ...user })
         .then(res => {
-            http.setToken(res.token)
-            .then(res => {
-                this.setState({
-                    user: res
-                })
-                this.props.addUser(this.state.user);
-            })
             this.setState({
+                name: '',
+                lastName: '',
+                email: '',
+                age: 0,
+                gender: '',
+                username: '',
+                password: '',
                 error: false
             })
-            this.props.showHideRegister(this.state.show);
+            this.props.showHideUserForm(this.state.show);
         })
         .catch(err => {
             this.setState({
@@ -122,32 +112,9 @@ class Register extends Component {
         });
     }
 
-    onClickLogIn() {
-        this.setState({
-            showLogIn: !this.state.showLogIn
-        });
-
-        this.props.showHideLogIn(this.state.showLogIn);
-    }
-
     render() {
         return (
-            <div ref={this.setWrapperRef} className={this.props.showRegister ? 'login-container px-3 pt-4 pb-5 show-log-in' : 'login-container px-3 pt-4 pb-5 hide-log-in'}>
-                <div className="arrow-up"/>
-                    <div className = "login-nav">
-                        <ul className="navbar-nav d-flex flex-row">
-                            <li>
-                                <a> 
-                                    <div className ="login-labels px-3 ml-2 mr-2 unselected" onClick={(e) => this.onClickRegister()}>Log In </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/"> 
-                                    <div className ="login-labels px-3 mr-2 ml-2">Register </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+            <div>
                     <div className="mt-4 mb-4 d-flex flex-column">
                         <div className="py-2">
                             <i className="fa fa-envelope icon pr-2"></i>
@@ -193,7 +160,7 @@ class Register extends Component {
                                 className="input-form" 
                                 id="username" 
                                 value={this.state.username}
-                                onChange={this.handleChangeName}/>
+                                onChange={this.handleChangeUserName}/>
                         </div>
                         <div className="py-2">
                             <i className="fa fa-key icon pr-2"></i>
@@ -208,15 +175,16 @@ class Register extends Component {
                         <div className="py-2">
                             <i className="fa fa-id-card icon pr-2"></i>
                             <select className="fa-select">
-                                <option onChange={this.handleChangeGender} value={"Male"}>Male</option>
-                                <option onChange={this.handleChangeGender} value={"Female"}>Female</option>
+                                <option onChange={this.handleChangeGender} value={this.state.gender}>Male</option>
+                                <option onChange={this.handleChangeGender} value={this.state.gender}>Female</option>
                             </select>
                         </div>
                     </div>
+                    <div className={this.state.error ? 'error-message py-2': 'd-none'}> username or password incorrect </div>
                     <button 
                         type="submit" 
                         className="submit-button px-5 py-2"
-                        onClick ={this.onSubmitUser}> 
+                        onClick ={this.onRegister}> 
                         REGISTER 
                     </button>
                 </div>
@@ -226,14 +194,11 @@ class Register extends Component {
 }
 
 Register.propTypes = {
-    showRegister : PropTypes.object.isRequired,
-    showLogIn: PropTypes.object.isRequired,
-    showHideLogIn: PropTypes.func.isRequired,
-    addUser: PropTypes.func.isRequired
+    showHideUserForm: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
-    showRegister: state.showRegister,
-    showLogIn: state.showLogIn,
+    showHideUserForm: state.showHideUserForm,
+    showUserForm: state.showUserForm
 });
-export default connect(mapStateToProps, {showHideRegister, addUser})(Register);
+export default connect(mapStateToProps, { showHideUserForm})(Register);
