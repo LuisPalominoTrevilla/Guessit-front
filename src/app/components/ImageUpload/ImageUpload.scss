@@ -1,0 +1,18 @@
+@import '../base.scss';
+
+.add-button {
+    color: white;
+    background-color: $menu-colors;
+    border-radius: 30px;
+    height: 50px;
+    width: 50px;
+}
+
+.input-labels {
+    color: $menu-colors;
+    font-size: 20px;
+}
+
+.modal-title {
+    color: $menu-colors;
+}
