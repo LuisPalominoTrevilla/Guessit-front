@@ -175,8 +175,8 @@ class Register extends Component {
                         <div className="py-2">
                             <i className="fa fa-id-card icon pr-2"></i>
                             <select className="fa-select">
-                                <option onChange={this.handleChangeGender} value={this.state.gender}>Male</option>
-                                <option onChange={this.handleChangeGender} value={this.state.gender}>Female</option>
+                                <option value={this.state.gender = 'Male'}>Male</option>
+                                <option value={this.state.gender = 'Female'}>Female</option>
                             </select>
                         </div>
                     </div>
