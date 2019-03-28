@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './ImageUpload.scss';
 import { Modal } from 'react-bootstrap';
 import http from 'services/http';
@@ -62,7 +62,7 @@ class ImageUpload extends Component {
     
       render() {
         return (
-          <>
+          <Fragment>
             <div className="d-flex flex-row-reverse mr-5 mt-3">
                 <button className="add-button" onClick={this.handleShow}>
                 +
@@ -89,7 +89,7 @@ class ImageUpload extends Component {
                 </button>
               </Modal.Footer>
             </Modal>
-          </>
+          </Fragment>
         );
     }
 }

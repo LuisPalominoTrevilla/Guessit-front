@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import GuessIt from './GuessIt';
 import GStats from './GStats';
-import Images from './Images';
+import Images from 'app/components/UserImages/Images';
 import Profile from './Profile';
 
 import { Route } from 'react-router-dom';

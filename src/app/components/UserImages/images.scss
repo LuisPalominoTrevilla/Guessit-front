@@ -1,0 +1,12 @@
+@import '../base.scss';
+
+.image-container {
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 3rem;
+
+    .user-image {
+        width: 100%;
+        box-shadow: 0px 0px 9px 7px $active-menu;
+    }
+}
