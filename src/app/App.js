@@ -5,14 +5,9 @@ import { Provider } from 'react-redux';
 import './App.scss';
 import Menu from './components/Menu/Menu';
 import Header from './components/Header/Header';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import SimpleForm from './components/SimpleForm';
-import SimpleText from './components/SimpleText';
-import GuessIt from './components/GuessIt';
-import GStats from './components/GStats';
-import Images from './components/Images';
-import Profile from './components/Profile';
+import ViewWrapper from './components/ViewWrapper';
 
 import store from 'reduxConf/store';
 
@@ -24,12 +19,7 @@ class App extends Component {
           <div className="App">
             <Menu/>
             <Header/>
-            <Route exact path='/' component={GuessIt} />
-            <Route path='/g-stats' component={GStats} />
-            <Route path='/images' component={Images} />
-            <Route path='/profile' component={Profile} />
-            <SimpleText />
-            <SimpleForm />
+            <ViewWrapper/>
           </div>
         </Provider>
       </BrowserRouter>
