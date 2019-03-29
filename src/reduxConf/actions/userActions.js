@@ -1,4 +1,4 @@
-import { SET_USER, REMOVE_USER, ADD_USER_IMAGES } from './types';
+import { SET_USER, REMOVE_USER, ADD_USER_IMAGES, ADD_USER_IMAGE } from './types';
 import http from 'services/http';
 
 export const addUser = url => dispatch => {
@@ -21,10 +21,17 @@ export const fetchImages = () => dispatch => {
                 dispatch({
                     type: ADD_USER_IMAGES,
                     payload: images
-                })
+                });
             })
             .catch(err => {
                 reject(err);
             });
+    });
+}
+
+export const insertImage = (image) => dispatch => {
+    dispatch({
+        type: ADD_USER_IMAGE,
+        payload: image
     });
 }

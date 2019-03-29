@@ -1,4 +1,4 @@
-import { SET_USER, REMOVE_USER, ADD_USER_IMAGES } from 'reduxConf/actions/types';
+import { SET_USER, REMOVE_USER, ADD_USER_IMAGES, ADD_USER_IMAGE } from 'reduxConf/actions/types';
 
 const initialState = {
     user: {},
@@ -16,6 +16,13 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 user: {}
+            }
+        case ADD_USER_IMAGE:
+            const images_tmp = state.images;
+            images_tmp.push(action.payload);
+            return {
+                ...state,
+                images: images_tmp
             }
         case ADD_USER_IMAGES:
             return {

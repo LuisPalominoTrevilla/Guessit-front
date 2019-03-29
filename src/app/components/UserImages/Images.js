@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import ImageUpload from 'app/components/ImageUpload/ImageUpload';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import { fetchImages } from 'reduxConf/actions/userActions';
 
 import './images.scss';
@@ -45,7 +46,7 @@ class Images extends Component {
     }
 }
 
-Images.propTypes = {
+Images.PropTypes = {
     fetchImages: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired
 }
