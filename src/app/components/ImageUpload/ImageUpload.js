@@ -99,7 +99,7 @@ class ImageUpload extends Component {
     }
 }
 
-ImageUpload.PropTypes = {
+ImageUpload.propTypes = {
   insertImage: PropTypes.func.isRequired
 }
 

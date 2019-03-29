@@ -3,8 +3,6 @@ import ImageUpload from 'app/components/ImageUpload/ImageUpload';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { fetchImages } from 'reduxConf/actions/userActions';
-
 import './images.scss';
 
 function Image(props) {
@@ -24,14 +22,6 @@ function RenderImages({ images }) {
 }
 
 class Images extends Component {
-
-    componentWillMount() {
-        this.props.fetchImages()
-            .catch(err => {
-                console.log(err);
-            });
-    }
-
     render() {
         return(
             <Fragment>
@@ -46,8 +36,7 @@ class Images extends Component {
     }
 }
 
-Images.PropTypes = {
-    fetchImages: PropTypes.func.isRequired,
+Images.propTypes = {
     user: PropTypes.object.isRequired
 }
 
@@ -55,4 +44,4 @@ const mapStateToProps = (state) => ({
     user: state.user
 });
 
-export default connect(mapStateToProps, { fetchImages })(Images);
+export default connect(mapStateToProps, null)(Images);
