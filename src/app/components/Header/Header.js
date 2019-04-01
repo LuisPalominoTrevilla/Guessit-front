@@ -11,8 +11,8 @@ class Header extends Component {
         super(props)
         this.state = {
             showMenu: true,
-            showUserForm: true,
-            isInitial: true
+            isInitial: true,
+            formBeenClicked: false
         }
         this.onClick = this.onClickMenu.bind(this);
         this.onClickUserForm = this.onClickUserForm.bind(this);
@@ -27,12 +27,15 @@ class Header extends Component {
         this.props.showHideMenu(this.state.showMenu);
         
     }
+    
     onClickUserForm() {
-        this.setState({
-            showUserForm: !this.state.showUserForm
-        });
 
-        this.props.showHideUserForm(this.state.showUserForm);
+            if(!this.props.showUserForm.show && !this.state.formBeenClicked) {
+                this.props.showHideUserForm(!this.props.showUserForm.show);
+                //this.setState({
+                  //  formBeenClicked: true
+                //})
+            }
     }
 
     render() {
@@ -60,6 +63,7 @@ Header.propTypes = {
 
 const mapStateToProps = (state) => ({
     user: state.user,
+    showUserForm: state.showUserForm
 });
 
-export default connect(mapStateToProps, {showHideMenu, showHideUserForm })(Header);
+export default connect(mapStateToProps, {showHideMenu, showHideUserForm})(Header);

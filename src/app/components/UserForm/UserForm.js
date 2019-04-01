@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './UserForm.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import http from 'services/http';
 import { showHideUserForm } from 'reduxConf/actions/clickActions';
 import LogIn from './LogIn';
 import Register from './Register';
@@ -31,12 +30,16 @@ class UserForm extends Component {
     componentWillUnmount() {
         document.removeEventListener('mousedown', this.handleClickOutside);
     }
-
+    
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            if(this.props.showUserForm.show){
-                this.props.showHideUserForm(this.state.show);
-            }
+            if(this.props.showUserForm.show) 
+                this.props.showHideUserForm(!this.props.showUserForm);
+            
+            this.onClickLogin()
+            
+            //else
+                //this.props.showHideUserForm(!this.props.showUserForm.show);
         }
     }
 
@@ -84,12 +87,13 @@ class UserForm extends Component {
 }
 
 UserForm.propTypes = {
-    showHideUserForm: PropTypes.func.isRequired
+    showHideUserForm: PropTypes.func.isRequired,
+    showUserForm: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
     showHideUserForm: state.showHideUserForm,
-    showUserForm: state.showUserForm
+    showUserForm: state.showUserForm,
 });
 
 export default connect(mapStateToProps, {showHideUserForm})(UserForm);

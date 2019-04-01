@@ -13,7 +13,7 @@ class Register extends Component {
             lastName: '',
             email: '',
             age: 0,
-            gender: '',
+            gender: 'Male',
             username: '',
             password: '',
             error: false
@@ -91,14 +91,16 @@ class Register extends Component {
             gender: this.state.gender,
             age: parseInt(this.state.age)
         };
+        
         http.post(`/User/Register`, { ...user })
         .then(res => {
+            console.log(res)
             this.setState({
                 name: '',
                 lastName: '',
                 email: '',
                 age: 0,
-                gender: '',
+                gender: 'Male',
                 username: '',
                 password: '',
                 error: false
@@ -173,11 +175,19 @@ class Register extends Component {
                                 onChange={this.handleChangePassword}/>
                         </div>
                         <div className="py-2">
-                            <i className="fa fa-id-card icon pr-2"></i>
-                            <select className="fa-select">
-                                <option value={this.state.gender = 'Male'}>Male</option>
-                                <option value={this.state.gender = 'Female'}>Female</option>
-                            </select>
+                            <form onChange={this.handleChangeGender}>
+                            <input type="radio" 
+                            name="gender"
+                            value="Male"
+                            />
+                            <i className="fa fa-mars"></i>
+                            <br/>
+                            <input type="radio"
+                             name="gender"
+                             value="Female"
+                            />   
+                            <i className="fa fa-venus"></i>
+                            </form>
                         </div>
                     </div>
                     <div className={this.state.error ? 'error-message py-2': 'd-none'}> Temporary error message - To be changed when error messages are sent in JSON form </div>
@@ -194,7 +204,8 @@ class Register extends Component {
 }
 
 Register.propTypes = {
-    showHideUserForm: PropTypes.func.isRequired
+    showHideUserForm: PropTypes.func.isRequired,
+    showUserForm: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
