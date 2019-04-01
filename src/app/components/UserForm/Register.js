@@ -16,7 +16,8 @@ class Register extends Component {
             gender: 'Male',
             username: '',
             password: '',
-            error: false
+            error: false,
+            correctEmail: true
         }
         this.handleChangeUserName = this.handleChangeUserName.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -81,37 +82,48 @@ class Register extends Component {
         this.setState({
             showUserForm: {show: false}
         });
-        const user = {
-            name: this.state.name,
-            image: "",
-            username: this.state.username,
-            email: this.state.email,
-            lastName: this.state.lastName,
-            password: this.state.password,
-            gender: this.state.gender,
-            age: parseInt(this.state.age)
-        };
-        
-        http.post(`/User/Register`, { ...user })
-        .then(res => {
-            console.log(res)
-            this.setState({
-                name: '',
-                lastName: '',
-                email: '',
-                age: 0,
-                gender: 'Male',
-                username: '',
-                password: '',
-                error: false
+
+        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if ( re.test(this.state.email) ) {
+            const user = {
+                name: this.state.name,
+                image: "",
+                username: this.state.username,
+                email: this.state.email,
+                lastName: this.state.lastName,
+                password: this.state.password,
+                gender: this.state.gender,
+                age: parseInt(this.state.age)
+            };
+            
+            http.post(`/User/Register`, { ...user })
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    name: '',
+                    lastName: '',
+                    email: '',
+                    age: 0,
+                    gender: 'Male',
+                    username: '',
+                    password: '',
+                    error: false
+                })
+                this.props.showHideUserForm(this.state.show);
             })
-            this.props.showHideUserForm(this.state.show);
-        })
-        .catch(err => {
-            this.setState({
-                error: true
+            .catch(err => {
+                this.setState({
+                    error: true
+                });
             });
-        });
+        }
+        else {
+            this.setState({
+                correctEmail: false
+            })
+        }
+        
     }
 
     render() {
@@ -123,6 +135,7 @@ class Register extends Component {
                             <input 
                                 placeholder="E-MAIL"
                                 className="input-form" 
+                                type="email"
                                 id="email" 
                                 value={this.state.email}
                                 onChange={this.handleChangeEmail}/>
@@ -191,6 +204,7 @@ class Register extends Component {
                         </div>
                     </div>
                     <div className={this.state.error ? 'error-message py-2': 'd-none'}> Temporary error message - To be changed when error messages are sent in JSON form </div>
+                    <div className={(!this.state.correctEmail) ? 'error-message py-2': 'd-none'}> Incorrect e-mail format </div>
                     <button 
                         type="submit" 
                         className="submit-button px-5 py-2"
