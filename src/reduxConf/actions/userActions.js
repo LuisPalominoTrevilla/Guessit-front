@@ -1,4 +1,5 @@
-import { SET_USER, REMOVE_USER } from './types';
+import { SET_USER, REMOVE_USER, ADD_USER_IMAGES, ADD_USER_IMAGE } from './types';
+import http from 'services/http';
 
 export const addUser = url => dispatch => {
     dispatch({
@@ -8,9 +9,31 @@ export const addUser = url => dispatch => {
 }
 
 export const removeUser = () => dispatch => {
-    console.log('Starting to remove user');
     dispatch({
         type: REMOVE_USER
     });
 }
 
+export const fetchImages = () => dispatch => {
+    return new Promise((resolve, reject) => {
+        http.get('Image/FromUser')
+            .then(({images}) => {
+                let newImages = images;
+                if (!images) newImages = [];
+                dispatch({
+                    type: ADD_USER_IMAGES,
+                    payload: newImages
+                });
+            })
+            .catch(err => {
+                reject(err);
+            });
+    });
+}
+
+export const insertImage = (image) => dispatch => {
+    dispatch({
+        type: ADD_USER_IMAGE,
+        payload: image
+    });
+}

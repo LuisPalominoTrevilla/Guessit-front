@@ -1,7 +1,15 @@
 $menu-colors: #153D52;
 $active-menu: #6A9591;
 $max-width-tablet: 768px;
+$max-width-small-laptop: 1024px;
 $max-with-mobile: 425px;
+$menu-width: 60px;
+
+.main-container {
+    &.menu-visible {
+        margin-left: $menu-width;
+    }
+}
 
 @-webkit-keyframes sidenavOpen {
     from {left: -70%;}

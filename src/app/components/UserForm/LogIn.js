@@ -3,7 +3,9 @@ import './UserForm.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import http from 'services/http';
+
 import { addUser } from 'reduxConf/actions/userActions';
+import { fetchImages } from 'reduxConf/actions/userActions';
 import { showHideUserForm } from 'reduxConf/actions/clickActions';
 
 class LogIn extends Component {
@@ -53,14 +55,18 @@ class LogIn extends Component {
         };
         http.post(`/User/Login`, { ...user })
         .then(res => {
-            http.setToken(res.token)
+            http.setToken(res.token);
+            this.props.fetchImages()
+                .catch(err => {
+                    console.log(err);
+                });
             http.get(`/User/PersonalData`)
-            .then(res => {
-                this.setState({
-                    user: res
+                .then(res => {
+                    this.setState({
+                        user: res
+                    })
+                    this.props.addUser(this.state.user);
                 })
-                this.props.addUser(this.state.user);
-            })
             this.setState({
                 error: false
             })
@@ -109,6 +115,7 @@ class LogIn extends Component {
 }
 
 LogIn.propTypes = {
+    fetchImages: PropTypes.func.isRequired,
     addUser: PropTypes.func.isRequired,
     showHideUserForm: PropTypes.func.isRequired
 }
@@ -117,5 +124,4 @@ const mapStateToProps = (state) => ({
     showHideUserForm: state.showHideUserForm,
     showUserForm: state.showUserForm
 });
-
-export default connect(mapStateToProps, {addUser, showHideUserForm})(LogIn);
+export default connect(mapStateToProps, {showHideUserForm, addUser, fetchImages})(LogIn);

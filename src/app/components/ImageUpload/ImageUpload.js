@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './ImageUpload.scss';
 import { Modal } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import http from 'services/http';
+
+import { insertImage } from 'reduxConf/actions/userActions';
 
 class ImageUpload extends Component {
     constructor(props, context) {
@@ -50,19 +54,20 @@ class ImageUpload extends Component {
             }
         }
         http.post(`/Image/UploadImage`, formData , config)
-        .then(res => {
-            this.handleClose();
-        })
-        .catch(err => {
-            this.setState({
-                error: true
-            });
-        });
+          .then(image => {
+              this.handleClose();
+              this.props.insertImage(image);
+          })
+          .catch(err => {
+              this.setState({
+                  error: true
+              });
+          });
     }
     
       render() {
         return (
-          <>
+          <Fragment>
             <div className="d-flex flex-row-reverse mr-5 mt-3">
                 <button className="add-button" onClick={this.handleShow}>
                 +
@@ -89,10 +94,13 @@ class ImageUpload extends Component {
                 </button>
               </Modal.Footer>
             </Modal>
-          </>
+          </Fragment>
         );
     }
 }
 
+ImageUpload.propTypes = {
+  insertImage: PropTypes.func.isRequired
+}
 
-export default ImageUpload;
+export default connect(null, { insertImage })(ImageUpload);
