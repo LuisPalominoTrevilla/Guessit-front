@@ -21,6 +21,7 @@ class ImageUpload extends Component {
           show: false,
           age: null,
           image: null,
+          imageURL: null,
           error: false,
         };
       }
@@ -40,7 +41,8 @@ class ImageUpload extends Component {
       }
 
       handleChangeImage(e) {
-        this.setState({ image: e.target.files[0] })
+        this.setState({ image: e.target.files[0] });
+        this.setState({ imageURL: URL.createObjectURL(new Blob(e.target.files))});
       }
 
       onSubmitImage(e) {
@@ -81,6 +83,7 @@ class ImageUpload extends Component {
               <Modal.Body>
                 <form> 
                     <div className="form-group">
+                        <img src={this.state.imageURL} alt="" class="before-image"/>
                         <p className="input-labels">Input an Image</p>
                         <input type="file" className="form-control-file" id="file" onChange={this.handleChangeImage}/>
                     </div>
