@@ -28,7 +28,7 @@ class Images extends Component {
                 <ImageUpload/>
                 <div className="container-fluid pt-3">
                     <div className="row">
-                        <RenderImages images={ this.props.user.images } />
+                        <RenderImages images={ this.props.user.images ? this.props.user.images : [] } />
                     </div>
                 </div>
             </Fragment>

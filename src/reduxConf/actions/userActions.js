@@ -18,9 +18,11 @@ export const fetchImages = () => dispatch => {
     return new Promise((resolve, reject) => {
         http.get('Image/FromUser')
             .then(({images}) => {
+                let newImages = images;
+                if (!images) newImages = [];
                 dispatch({
                     type: ADD_USER_IMAGES,
-                    payload: images
+                    payload: newImages
                 });
             })
             .catch(err => {
