@@ -1,4 +1,4 @@
-import { SET_LOG_VALUE } from 'reduxConf/actions/types';
+import { SET_USRFRM_VALUE } from 'reduxConf/actions/types';
 
 const initialState = {
     show: false
@@ -6,7 +6,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case SET_LOG_VALUE:
+        case SET_USRFRM_VALUE:
             return {
                 ...state,
                 show: action.payload
