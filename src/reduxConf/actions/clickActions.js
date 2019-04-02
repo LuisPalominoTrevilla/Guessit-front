@@ -1,13 +1,13 @@
-import { SET_MENU_VALUE, SET_LOG_VALUE } from './types';
+import { SET_MENU_VALUE, SET_USRFRM_VALUE } from './types';
 export const showHideMenu = item => dispatch => {
     dispatch({
         type: SET_MENU_VALUE,
         payload: item
     });
 }
-export const showHideLogIn = item => dispatch => {
+export const showHideUserForm = item => dispatch => {
     dispatch({
-        type: SET_LOG_VALUE,
+        type: SET_USRFRM_VALUE,
         payload: item
     });
 }

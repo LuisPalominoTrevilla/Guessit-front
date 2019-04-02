@@ -13,3 +13,4 @@ export const removeUser = () => dispatch => {
         type: REMOVE_USER
     });
 }
+
