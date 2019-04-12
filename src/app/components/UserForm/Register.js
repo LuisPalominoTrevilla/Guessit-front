@@ -133,7 +133,7 @@ class Register extends Component {
                         <div className="py-2">
                             <i className="fa fa-envelope icon pr-2"></i>
                             <input 
-                                placeholder="E-MAIL"
+                                placeholder="Correo electrónico"
                                 className="input-form" 
                                 type="email"
                                 id="email" 
@@ -143,7 +143,7 @@ class Register extends Component {
                         <div className="py-2">
                             <i className="fa fa-id-card icon pr-2"></i>
                             <input 
-                                placeholder="FIRST NAME"
+                                placeholder="Nombre"
                                 className="input-form" 
                                 id="name" 
                                 value={this.state.name}
@@ -152,7 +152,7 @@ class Register extends Component {
                         <div className="py-2">
                             <i className="fa fa-id-card icon pr-2"></i>
                             <input 
-                                placeholder="LAST NAME"
+                                placeholder="Apellido"
                                 className="input-form" 
                                 id="lastName" 
                                 value={this.state.lastName}
@@ -162,7 +162,7 @@ class Register extends Component {
                             <i className="fa fa-calendar icon pr-2"></i>
                             <input 
                                 type="number"
-                                placeholder="AGE"
+                                placeholder="Edad"
                                 className="input-form" 
                                 id="age" 
                                 value={this.state.age}
@@ -171,7 +171,7 @@ class Register extends Component {
                         <div className="py-2">
                             <i className="fa fa-user icon pr-2"></i>
                             <input 
-                                placeholder="USERNAME"
+                                placeholder="Usuario"
                                 className="input-form" 
                                 id="username" 
                                 value={this.state.username}
@@ -180,7 +180,7 @@ class Register extends Component {
                         <div className="py-2">
                             <i className="fa fa-key icon pr-2"></i>
                             <input 
-                                placeholder="PASSWORD"
+                                placeholder="Contraseña"
                                 className="input-form" 
                                 id="password"
                                 value={this.state.password}

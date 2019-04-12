@@ -86,7 +86,7 @@ class LogIn extends Component {
                     <div className="py-2">
                         <i className="fa fa-user icon pr-2"></i>
                         <input 
-                            placeholder="USERNAME"
+                            placeholder="Usuario"
                             className="input-form" 
                             id="username" 
                             value={this.state.username}
@@ -95,7 +95,7 @@ class LogIn extends Component {
                     <div className="py-2">
                         <i className="fa fa-key icon pr-2"></i>
                         <input 
-                            placeholder="PASSWORD"
+                            placeholder="Contraseña"
                             className="input-form" 
                             id="password"
                             value={this.state.password}

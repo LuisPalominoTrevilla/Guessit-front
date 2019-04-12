@@ -11,11 +11,15 @@ class Header extends Component {
         super(props)
         this.state = {
             showMenu: true,
-            isInitial: true,
-            formBeenClicked: false
+            isInitial: true
         }
         this.onClick = this.onClickMenu.bind(this);
+        this.setWrapperRef = this.setWrapperRef.bind(this);
         this.onClickUserForm = this.onClickUserForm.bind(this);
+    }
+
+    setWrapperRef(node) {
+        this.wrapperRef = node;
     }
     
     onClickMenu() {
@@ -25,17 +29,14 @@ class Header extends Component {
         });
 
         this.props.showHideMenu(this.state.showMenu);
-        
+    }
+
+    checkHeaderClick(event) {
+        return this.wrapperRef && this.wrapperRef.contains(event.target);
     }
     
     onClickUserForm() {
-
-            if(!this.props.showUserForm.show && !this.state.formBeenClicked) {
-                this.props.showHideUserForm(!this.props.showUserForm.show);
-                //this.setState({
-                  //  formBeenClicked: true
-                //})
-            }
+        this.props.showHideUserForm(!this.props.showUserForm.show);
     }
 
     render() {
@@ -44,11 +45,11 @@ class Header extends Component {
                 <div className={`${this.state.showMenu ? 'no-header-menu' : 'header-menu-tablet'} ${this.state.isInitial ? '' : 'enable-sidenav-transition'}`}><div className="sidenav-header"></div></div>
                 <i className={this.state.showMenu ? 'fa fa-bars icon-header menu-bar' : 'fa fa-bars icon-header menu-bar icon-above'} onClick={(e) => this.onClickMenu()} value= {this.state.showMenu} ></i>
                 <div className="tittle px-3">GuessIt!</div>
-                <i  className={this.props.user.user.image ? ' d-none' : 'fa fa-user-circle-o icon-header mr-3'} onClick={(e) => this.onClickUserForm()}></i>
+                <i ref={this.setWrapperRef} className={this.props.user.user.image ? ' d-none' : 'fa fa-user-circle-o icon-header mr-3'} onClick={(e) => this.onClickUserForm()}></i>
                 <Link to='/profile' className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'}>
                 <img className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'} alt="imágen de perfil" src={this.props.user.user.image ? this.props.user.user.image : ''}></img>
                 </Link>
-                <UserForm/>
+                <UserForm checkHeaderClick={(evt) => this.checkHeaderClick(evt)}/>
             </div>
 
         )

@@ -32,14 +32,11 @@ class UserForm extends Component {
     }
     
     handleClickOutside(event) {
-        if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-            if(this.props.showUserForm.show) 
-                this.props.showHideUserForm(!this.props.showUserForm);
-            
-            this.onClickLogin()
-            
-            //else
-                //this.props.showHideUserForm(!this.props.showUserForm.show);
+        if (this.wrapperRef && !this.props.checkHeaderClick(event) && !this.wrapperRef.contains(event.target)) {
+            if(this.props.showUserForm.show) {
+                this.props.showHideUserForm(false);
+            }
+            this.onClickLogin();
         }
     }
 
