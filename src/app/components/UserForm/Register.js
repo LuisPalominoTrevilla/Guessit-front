@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './UserForm.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import http from 'services/http';
 import { showHideUserForm } from 'reduxConf/actions/clickActions';
+import { NotificationManager } from 'react-notifications';
 
 class Register extends Component {
     constructor(props) {
@@ -29,6 +30,23 @@ class Register extends Component {
         this.onRegister = this.onRegister.bind(this);
         this.setWrapperRef = this.setWrapperRef.bind(this);
     }
+
+    createNotification(type) {
+        switch (type) {
+            case 'info':
+                NotificationManager.info('Info message');
+                break;
+            case 'success':
+                NotificationManager.success('Success message', 'Title here');
+                break;
+            case 'warning':
+                NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
+                break;
+            case 'error':
+                NotificationManager.error('Error message', 'Click me!', 5000 );
+                break;
+        }
+    };
     
     setWrapperRef(node) {
         this.wrapperRef = node;
@@ -119,6 +137,7 @@ class Register extends Component {
             });
         }
         else {
+            this.createNotification('warning');
             this.setState({
                 correctEmail: false
             })
@@ -128,91 +147,89 @@ class Register extends Component {
 
     render() {
         return (
-            <div>
-                    <div className="mt-4 mb-4 d-flex flex-column">
-                        <div className="py-2">
-                            <i className="fa fa-envelope icon pr-2"></i>
-                            <input 
-                                placeholder="Correo electrónico"
-                                className="input-form" 
-                                type="email"
-                                id="email" 
-                                value={this.state.email}
-                                onChange={this.handleChangeEmail}/>
-                        </div>
-                        <div className="py-2">
-                            <i className="fa fa-id-card icon pr-2"></i>
-                            <input 
-                                placeholder="Nombre"
-                                className="input-form" 
-                                id="name" 
-                                value={this.state.name}
-                                onChange={this.handleChangeName}/>
-                        </div>
-                        <div className="py-2">
-                            <i className="fa fa-id-card icon pr-2"></i>
-                            <input 
-                                placeholder="Apellido"
-                                className="input-form" 
-                                id="lastName" 
-                                value={this.state.lastName}
-                                onChange={this.handleChangeLastName}/>
-                        </div>
-                        <div className="py-2">
-                            <i className="fa fa-calendar icon pr-2"></i>
-                            <input 
-                                type="number"
-                                placeholder="Edad"
-                                className="input-form" 
-                                id="age" 
-                                value={this.state.age}
-                                onChange={this.handleChangeAge}/>
-                        </div>
-                        <div className="py-2">
-                            <i className="fa fa-user icon pr-2"></i>
-                            <input 
-                                placeholder="Usuario"
-                                className="input-form" 
-                                id="username" 
-                                value={this.state.username}
-                                onChange={this.handleChangeUserName}/>
-                        </div>
-                        <div className="py-2">
-                            <i className="fa fa-key icon pr-2"></i>
-                            <input 
-                                placeholder="Contraseña"
-                                className="input-form" 
-                                id="password"
-                                value={this.state.password}
-                                type= "password"
-                                onChange={this.handleChangePassword}/>
-                        </div>
-                        <div className="py-2">
-                            <form onChange={this.handleChangeGender}>
-                            <input type="radio" 
-                            name="gender"
-                            value="Male"
-                            />
-                            <i className="fa fa-mars"></i>
-                            <br/>
-                            <input type="radio"
-                             name="gender"
-                             value="Female"
-                            />   
-                            <i className="fa fa-venus"></i>
-                            </form>
-                        </div>
+            <Fragment>
+                <div className="mt-4 mb-4 d-flex flex-column">
+                    <div className="py-2">
+                        <i className="fa fa-envelope icon pr-2"></i>
+                        <input 
+                            placeholder="Correo electrónico"
+                            className="input-form" 
+                            type="email"
+                            id="email" 
+                            value={this.state.email}
+                            onChange={this.handleChangeEmail}/>
                     </div>
-                    <div className={this.state.error ? 'error-message py-2': 'd-none'}> Temporary error message - To be changed when error messages are sent in JSON form </div>
-                    <div className={(!this.state.correctEmail) ? 'error-message py-2': 'd-none'}> Incorrect e-mail format </div>
-                    <button 
-                        type="submit" 
-                        className="submit-button px-5 py-2"
-                        onClick ={this.onRegister}> 
-                        REGISTER 
-                    </button>
+                    <div className="py-2">
+                        <i className="fa fa-id-card icon pr-2"></i>
+                        <input 
+                            placeholder="Nombre"
+                            className="input-form" 
+                            id="name" 
+                            value={this.state.name}
+                            onChange={this.handleChangeName}/>
+                    </div>
+                    <div className="py-2">
+                        <i className="fa fa-id-card icon pr-2"></i>
+                        <input 
+                            placeholder="Apellido"
+                            className="input-form" 
+                            id="lastName" 
+                            value={this.state.lastName}
+                            onChange={this.handleChangeLastName}/>
+                    </div>
+                    <div className="py-2">
+                        <i className="fa fa-calendar icon pr-2"></i>
+                        <input 
+                            type="number"
+                            placeholder="Edad"
+                            className="input-form" 
+                            id="age" 
+                            value={this.state.age}
+                            onChange={this.handleChangeAge}/>
+                    </div>
+                    <div className="py-2">
+                        <i className="fa fa-user icon pr-2"></i>
+                        <input 
+                            placeholder="Usuario"
+                            className="input-form" 
+                            id="username" 
+                            value={this.state.username}
+                            onChange={this.handleChangeUserName}/>
+                    </div>
+                    <div className="py-2">
+                        <i className="fa fa-key icon pr-2"></i>
+                        <input 
+                            placeholder="Contraseña"
+                            className="input-form" 
+                            id="password"
+                            value={this.state.password}
+                            type= "password"
+                            onChange={this.handleChangePassword}/>
+                    </div>
+                    <div className="py-2">
+                        <form onChange={this.handleChangeGender}>
+                        <input type="radio" 
+                        name="gender"
+                        value="Male"
+                        />
+                        <i className="fa fa-mars"></i>
+                        <br/>
+                        <input type="radio"
+                            name="gender"
+                            value="Female"
+                        />   
+                        <i className="fa fa-venus"></i>
+                        </form>
+                    </div>
                 </div>
-
+                <div className={(!this.state.correctEmail) ? 'error-message py-2': 'd-none'}> Incorrect e-mail format </div>
+                <button 
+                    type="submit" 
+                    className="submit-button px-5 py-2"
+                    onClick ={this.onRegister}> 
+                    REGISTER 
+                </button>
+            </Fragment>
         )
     }
 }
