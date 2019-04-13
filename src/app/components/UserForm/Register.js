@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import http from 'services/http';
 import { showHideUserForm } from 'reduxConf/actions/clickActions';
-import Notify from 'mixins/notifyMixin';
+import Notify from 'util/notifier';
 
 class Register extends Component {
 
