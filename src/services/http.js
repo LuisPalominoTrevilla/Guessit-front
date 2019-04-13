@@ -17,11 +17,7 @@ http.removeToken = () => {
 
 const interceptResErrors = err => {
     console.log('err', err);
-    try {
-        err = Object.assign(new Error(), err.response.data.error);
-    } catch (e) {
-    }
-      return Promise.reject(err);
+    return Promise.reject(err.response.data);
 };
 
 

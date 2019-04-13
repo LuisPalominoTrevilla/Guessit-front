@@ -17,9 +17,7 @@ class Register extends Component {
             age: 0,
             gender: 'Male',
             username: '',
-            password: '',
-            error: false,
-            correctEmail: true
+            password: ''
         }
         this.handleChangeUserName = this.handleChangeUserName.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -109,15 +107,12 @@ class Register extends Component {
                     age: 0,
                     gender: 'Male',
                     username: '',
-                    password: '',
-                    error: false
+                    password: ''
                 })
                 this.props.showHideUserForm(this.state.show);
             })
             .catch(err => {
-                this.setState({
-                    error: true
-                });
+                Notify.createNotification('error', 'Error al crear usuario', err);
             });
         }
         else {
