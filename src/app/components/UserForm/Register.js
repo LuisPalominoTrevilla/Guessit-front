@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import http from 'services/http';
 import { showHideUserForm } from 'reduxConf/actions/clickActions';
-import { NotificationManager } from 'react-notifications';
+import Notify from 'mixins/notifyMixin';
 
 class Register extends Component {
+
     constructor(props) {
         super(props)
         this.state = {
@@ -30,23 +31,6 @@ class Register extends Component {
         this.onRegister = this.onRegister.bind(this);
         this.setWrapperRef = this.setWrapperRef.bind(this);
     }
-
-    createNotification(type) {
-        switch (type) {
-            case 'info':
-                NotificationManager.info('Info message');
-                break;
-            case 'success':
-                NotificationManager.success('Success message', 'Title here');
-                break;
-            case 'warning':
-                NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
-                break;
-            case 'error':
-                NotificationManager.error('Error message', 'Click me!', 5000 );
-                break;
-        }
-    };
     
     setWrapperRef(node) {
         this.wrapperRef = node;
@@ -137,10 +121,7 @@ class Register extends Component {
             });
         }
         else {
-            this.createNotification('warning');
-            this.setState({
-                correctEmail: false
-            })
+            Notify.createNotification('warning', 'Datos inválidos', 'El correo no tiene un formato válido');
         }
         
     }
@@ -222,7 +203,6 @@ class Register extends Component {
                         </form>
                     </div>
                 </div>
-                <div className={(!this.state.correctEmail) ? 'error-message py-2': 'd-none'}> Incorrect e-mail format </div>
                 <button 
                     type="submit" 
                     className="submit-button px-5 py-2"
