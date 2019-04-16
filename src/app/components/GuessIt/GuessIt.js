@@ -5,9 +5,18 @@ import './guessit.scss';
 
 const Image = props => {
     return (
-        <div className="col-12 col-lg-3 col-md-4 col-sm-6">
-            <div className="image-container">
-                <img src={ props.url } alt="Imágen" className="user-image" />
+        <div className="guessit-image col-12 col-xl-3 col-lg-4 col-md-6">
+            <div className="guessit-rate-container">
+                <div className="guessit-image-container">
+                    <img
+                        src={props.url}
+                        alt="Imágen"
+                        className="user-image cur-pointer"/>
+                </div>
+                <div className="guessit-input-container">
+                    <input placeholder="How old is he/she?" type="text" data-lpignore={true}/>
+                    <i className="submit-age-btn cur-pointer fas fa-check"/>
+                </div>
             </div>
         </div>
     )

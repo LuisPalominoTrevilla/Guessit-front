@@ -1,5 +1,6 @@
 $menu-colors: #153D52;
 $active-menu: #6A9591;
+$cards-background: rgb(160, 190, 187);
 $max-width-tablet: 768px;
 $max-width-small-laptop: 1024px;
 $max-with-mobile: 425px;
@@ -9,6 +10,10 @@ $menu-width: 60px;
     &.menu-visible {
         margin-left: $menu-width;
     }
+}
+
+.cur-pointer {
+    cursor: pointer;
 }
 
 @-webkit-keyframes sidenavOpen {
