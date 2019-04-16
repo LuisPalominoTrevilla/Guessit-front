@@ -15,7 +15,7 @@ const Image = props => {
                 </div>
                 <div className="guessit-input-container">
                     <input placeholder="How old is he/she?" type="text" data-lpignore={true}/>
-                    <i className="submit-age-btn cur-pointer fas fa-check"/>
+                    <i className="submit-age-btn cur-pointer fas fa-check" data-toggle="tooltip" data-placement="bottom" title="Calificar imágen"/>
                 </div>
             </div>
         </div>
