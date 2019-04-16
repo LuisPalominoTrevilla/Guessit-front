@@ -83,7 +83,7 @@ class ImageUpload extends Component {
               <Modal.Body>
                 <form> 
                     <div className="form-group">
-                        <img src={this.state.imageURL} alt="" class="before-image"/>
+                        <img src={this.state.imageURL} alt="" className="before-image"/>
                         <p className="input-labels">Input an Image</p>
                         <input type="file" className="form-control-file" id="file" onChange={this.handleChangeImage}/>
                     </div>
