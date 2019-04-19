@@ -9,15 +9,27 @@ class Image extends Component {
         super(props);
 
         this.state = {
-            age: ""
+            age: "",
+            response: {
+                guessed: false,
+                correct: false,
+                message: ""
+            }
         }
     }
 
     handleClick() {
         const age = parseInt(this.state.age);
+        if (this.state.response.guessed) return; 
         http.post(`/Image/${this.props.imageId}/Rate`, { age })
             .then(res => {
-                console.log(res);
+                this.setState({
+                    response: {
+                        guessed: true,
+                        correct: res.correct,
+                        message: res.message
+                    }
+                })
             })
             .catch(err => {
                 console.log(err);
@@ -42,19 +54,26 @@ class Image extends Component {
                 <div className="guessit-rate-container">
                     <div className="guessit-image-container">
                         <img
+                            hidden={this.state.response.guessed}
                             src={this.props.url}
                             alt="Imágen"
                             className="user-image cur-pointer"/>
+                        <div
+                            hidden={!this.state.response.guessed}
+                            className={`guess-response ${this.state.response.correct ? "correct" : "incorrect" }`}>
+                            <h4>{this.state.response.message}</h4>
+                        </div>
                     </div>
                     <div className="guessit-input-container">
                         <input
+                            disabled={this.state.response.guessed}
                             placeholder="How old is he/she?"
                             type="text"
                             value={this.state.age}
                             onChange={(e) => this.handleAgeChange(e)}
                             data-lpignore={true}/>
                         <i
-                            className="submit-age-btn cur-pointer fas fa-check"
+                            className={`submit-age-btn ${!this.state.response.guessed ? 'cur-pointer' : ''} fas fa-check`}
                             data-toggle="tooltip"
                             data-placement="bottom"
                             title="Calificar imágen"
