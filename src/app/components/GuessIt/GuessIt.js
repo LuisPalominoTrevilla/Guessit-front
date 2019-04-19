@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import http from 'services/http';
+
+import { fetchAllImages, removeImage } from 'reduxConf/actions/guessitActions';
 
 import './guessit.scss';
 
@@ -104,40 +108,37 @@ const RenderImages = ({ images, removeImage }) => {
 class GuessIt extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            images: []
-        }
     }
 
     componentWillMount() {
-        http.get('/Image')
-            .then(({ images }) => {
-                this.setState({
-                    images
-                });
-            })
+        this.props.fetchAllImages()
             .catch(err => {
                 console.log(err);
             });
     }
 
-    removeImage(id) {
-        this.setState({
-            images: this.state.images.filter(image => image.id !== id)
-        });
-    }
-
     render() {
+        const { images } = this.props.images;
         return (
             <div className="container-fluid pt-3">
                 <div className="row">
                     <RenderImages
-                        images={this.state.images}
-                        removeImage={(id) => this.removeImage(id)}/>
+                        images={images}
+                        removeImage={this.props.removeImage}/>
                 </div>
             </div>
         )
     }
 }
 
-export default GuessIt;
+GuessIt.propTypes = {
+    images: PropTypes.object.isRequired,
+    fetchAllImages: PropTypes.func.isRequired,
+    removeImage: PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    images: state.guessit
+});
+
+export default connect(mapStateToProps, { fetchAllImages, removeImage })(GuessIt);
