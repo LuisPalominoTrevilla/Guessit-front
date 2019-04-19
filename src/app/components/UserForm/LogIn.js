@@ -7,6 +7,7 @@ import http from 'services/http';
 import { addUser } from 'reduxConf/actions/userActions';
 import { fetchImages } from 'reduxConf/actions/userActions';
 import { showHideUserForm } from 'reduxConf/actions/clickActions';
+import { fetchAllImages } from 'reduxConf/actions/guessitActions';
 
 class LogIn extends Component {
     constructor(props) {
@@ -60,6 +61,7 @@ class LogIn extends Component {
                 .catch(err => {
                     console.log(err);
                 });
+            this.props.fetchAllImages();
             http.get(`/User/PersonalData`)
                 .then(res => {
                     this.setState({
@@ -117,11 +119,12 @@ class LogIn extends Component {
 LogIn.propTypes = {
     fetchImages: PropTypes.func.isRequired,
     addUser: PropTypes.func.isRequired,
-    showHideUserForm: PropTypes.func.isRequired
+    showHideUserForm: PropTypes.func.isRequired,
+    fetchAllImages: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
     showHideUserForm: state.showHideUserForm,
     showUserForm: state.showUserForm
 });
-export default connect(mapStateToProps, {showHideUserForm, addUser, fetchImages})(LogIn);
+export default connect(mapStateToProps, { showHideUserForm, addUser, fetchImages, fetchAllImages })(LogIn);

@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import http from 'services/http';
 
-import {removeUser} from 'reduxConf/actions/userActions';
+import { removeUser } from 'reduxConf/actions/userActions';
+import { fetchAllImages } from 'reduxConf/actions/guessitActions';
 
 class Menu extends Component {
     constructor(props){
@@ -34,6 +35,7 @@ class Menu extends Component {
                 http.removeToken();
                 this.props.removeUser();
                 this.props.history.push('/');
+                this.props.fetchAllImages();
             })
             .catch(err => {
                 console.log(err);
@@ -89,11 +91,12 @@ class Menu extends Component {
 Menu.propTypes = {
     showMenu: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
-    removeUser: PropTypes.func.isRequired
+    removeUser: PropTypes.func.isRequired,
+    fetchAllImages: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
     showMenu: state.showMenu,
     user: state.user
 });
-export default withRouter(connect(mapStateToProps, {removeUser})(Menu));
+export default withRouter(connect(mapStateToProps, { removeUser, fetchAllImages })(Menu));
