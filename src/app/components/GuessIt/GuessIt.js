@@ -29,7 +29,10 @@ class Image extends Component {
                         correct: res.correct,
                         message: res.message
                     }
-                })
+                });
+                setTimeout(() => {
+                    this.props.removeImage(this.props.imageId);
+                }, 1500);
             })
             .catch(err => {
                 console.log(err);
@@ -85,13 +88,14 @@ class Image extends Component {
     }
 }
 
-const RenderImages = ({ images }) => {
+const RenderImages = ({ images, removeImage }) => {
     return images.map(image =>
         (
             <Image
                 key={image.id}
                 url={`${process.env.REACT_APP_IMAGES_BASE_URL}${image.url}`}
                 imageId={image.id}
+                removeImage={removeImage}
                 age={image.age} />
         )
     );
@@ -117,11 +121,19 @@ class GuessIt extends Component {
             });
     }
 
+    removeImage(id) {
+        this.setState({
+            images: this.state.images.filter(image => image.id !== id)
+        });
+    }
+
     render() {
         return (
             <div className="container-fluid pt-3">
                 <div className="row">
-                    <RenderImages images={this.state.images} />
+                    <RenderImages
+                        images={this.state.images}
+                        removeImage={(id) => this.removeImage(id)}/>
                 </div>
             </div>
         )
