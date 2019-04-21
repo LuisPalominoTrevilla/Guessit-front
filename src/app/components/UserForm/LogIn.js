@@ -39,11 +39,13 @@ class LogIn extends Component {
             username: e.target.value
         })
     }
+
     handleChangePassword(e){
         this.setState({
             password: e.target.value
           })
     }
+
     onSubmitUser(e) {
         e.preventDefault();
         this.setState({
@@ -103,11 +105,11 @@ class LogIn extends Component {
                             onChange={this.handleChangePassword}/>
                     </div>
                 </div>
-                <div className={this.state.error ? 'error-message py-2': 'd-none'}> Username or password incorrect </div>
+                <div className={this.state.error ? 'error-message py-2': 'd-none'}> Usuario o contraseña incorrecta </div>
                 <button 
                     type="submit" 
                     className="submit-button px-5 py-2"
-                    onClick ={this.onSubmitUser}> SUBMIT 
+                    onClick ={this.onSubmitUser}> Iniciar sesión
                 </button>
             </div>
         )

@@ -83,7 +83,7 @@ class Register extends Component {
             showUserForm: {show: false}
         });
 
-        let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if ( re.test(this.state.email) ) {
             const user = {
@@ -209,7 +209,7 @@ class Register extends Component {
                         type="submit" 
                         className="submit-button px-5 py-2"
                         onClick ={this.onRegister}> 
-                        REGISTER 
+                        Registrar
                     </button>
                 </div>
 
