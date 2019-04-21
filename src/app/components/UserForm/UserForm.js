@@ -19,6 +19,7 @@ class UserForm extends Component {
         this.onClickRegister = this.onClickRegister.bind(this)
         this.onClickLogin = this.onClickLogin.bind(this);
     }
+    
     setWrapperRef(node) {
         this.wrapperRef = node;
     }
@@ -36,6 +37,7 @@ class UserForm extends Component {
             if(this.props.showUserForm.show) {
                 this.props.showHideUserForm(false);
             }
+            this.onClickRegister();
             this.onClickLogin();
         }
     }
