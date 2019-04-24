@@ -3,6 +3,7 @@ import './UserForm.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import http from 'services/http';
+import Notify from 'util/notifier';
 
 import { addUser } from 'reduxConf/actions/userActions';
 import { fetchImages } from 'reduxConf/actions/userActions';
@@ -14,8 +15,7 @@ class LogIn extends Component {
         this.state = {
             username: '',
             password: '',
-            user: '',
-            error: false
+            user: ''
         }
         this.handleChangeUserName = this.handleChangeUserName.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -67,15 +67,10 @@ class LogIn extends Component {
                     })
                     this.props.addUser(this.state.user);
                 })
-            this.setState({
-                error: false
-            })
             this.props.showHideUserForm(this.state.show);
         })
-        .catch(err => {
-            this.setState({
-                error: true
-            });
+        .catch(() => {
+            Notify.createNotification('error', 'Login fallido', 'Usuario o contraseña incorrectos');
         });
     }
 
@@ -103,7 +98,6 @@ class LogIn extends Component {
                             onChange={this.handleChangePassword}/>
                     </div>
                 </div>
-                <div className={this.state.error ? 'error-message py-2': 'd-none'}> Username or password incorrect </div>
                 <button 
                     type="submit" 
                     className="submit-button px-5 py-2"

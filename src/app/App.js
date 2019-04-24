@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.min.css';
+import 'react-notifications/lib/notifications.css';
 import { Provider } from 'react-redux';
 import './App.scss';
 import Menu from './components/Menu/Menu';
