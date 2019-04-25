@@ -6,3 +6,5 @@ export const REMOVE_USER = 'REMOVE_USER';
 export const ADD_USER_IMAGE = 'ADD_USER_IMAGE';
 export const ADD_USER_IMAGES = 'ADD_USER_IMAGES';
 export const SET_USRFRM_VALUE = 'SET_USRFRM_VALUE';
+export const SET_IMAGES = 'ADD_IMAGES';
+export const REMOVE_IMAGE = 'REMOVE_IMAGE';
