@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { showHideMenu, showHideUserForm } from 'reduxConf/actions/clickActions';
 import UserForm from '../UserForm/UserForm';
+import { NotificationContainer } from 'react-notifications';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
@@ -50,6 +51,7 @@ class Header extends Component {
                 <img className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'} alt="imágen de perfil" src={this.props.user.user.image ? this.props.user.user.image : ''}></img>
                 </Link>
                 <UserForm checkHeaderClick={(evt) => this.checkHeaderClick(evt)}/>
+                <NotificationContainer/>
             </div>
 
         )

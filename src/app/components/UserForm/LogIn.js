@@ -3,10 +3,12 @@ import './UserForm.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import http from 'services/http';
+import Notify from 'util/notifier';
 
 import { addUser } from 'reduxConf/actions/userActions';
 import { fetchImages } from 'reduxConf/actions/userActions';
 import { showHideUserForm } from 'reduxConf/actions/clickActions';
+import { fetchAllImages } from 'reduxConf/actions/guessitActions';
 
 class LogIn extends Component {
     constructor(props) {
@@ -14,8 +16,7 @@ class LogIn extends Component {
         this.state = {
             username: '',
             password: '',
-            user: '',
-            error: false
+            user: ''
         }
         this.handleChangeUserName = this.handleChangeUserName.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -62,6 +63,7 @@ class LogIn extends Component {
                 .catch(err => {
                     console.log(err);
                 });
+            this.props.fetchAllImages();
             http.get(`/User/PersonalData`)
                 .then(res => {
                     this.setState({
@@ -69,15 +71,10 @@ class LogIn extends Component {
                     })
                     this.props.addUser(this.state.user);
                 })
-            this.setState({
-                error: false
-            })
             this.props.showHideUserForm(this.state.show);
         })
-        .catch(err => {
-            this.setState({
-                error: true
-            });
+        .catch(() => {
+            Notify.createNotification('error', 'Login fallido', 'Usuario o contraseña incorrectos');
         });
     }
 
@@ -105,7 +102,6 @@ class LogIn extends Component {
                             onChange={this.handleChangePassword}/>
                     </div>
                 </div>
-                <div className={this.state.error ? 'error-message py-2': 'd-none'}> Usuario o contraseña incorrecta </div>
                 <button 
                     type="submit" 
                     className="submit-button px-5 py-2"
@@ -119,11 +115,12 @@ class LogIn extends Component {
 LogIn.propTypes = {
     fetchImages: PropTypes.func.isRequired,
     addUser: PropTypes.func.isRequired,
-    showHideUserForm: PropTypes.func.isRequired
+    showHideUserForm: PropTypes.func.isRequired,
+    fetchAllImages: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
     showHideUserForm: state.showHideUserForm,
     showUserForm: state.showUserForm
 });
-export default connect(mapStateToProps, {showHideUserForm, addUser, fetchImages})(LogIn);
+export default connect(mapStateToProps, { showHideUserForm, addUser, fetchImages, fetchAllImages })(LogIn);

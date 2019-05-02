@@ -16,8 +16,8 @@ function Image(props) {
 }
 
 function RenderImages({ images }) {
-    return images.map((image, index) => (
-        <Image key={index} imageURL={`${process.env.REACT_APP_IMAGES_BASE_URL}${image.url}`} />
+    return images.map(image => (
+        <Image key={image.id} imageURL={`${process.env.REACT_APP_IMAGES_BASE_URL}${image.url}`} />
     ));
 }
 

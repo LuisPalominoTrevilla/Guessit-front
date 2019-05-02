@@ -1,6 +1,7 @@
 import axios from 'axios';
 const http = axios.create({
-    baseURL: `${process.env.REACT_APP_API_URL}`
+    baseURL: `${process.env.REACT_APP_API_URL}`,
+    withCredentials: true
 });
 
 http.successCallback = response => {
@@ -17,11 +18,7 @@ http.removeToken = () => {
 
 const interceptResErrors = err => {
     console.log('err', err);
-    try {
-        err = Object.assign(new Error(), err.response.data.error);
-    } catch (e) {
-    }
-      return Promise.reject(err);
+    return Promise.reject(err.response.data);
 };
 
 
