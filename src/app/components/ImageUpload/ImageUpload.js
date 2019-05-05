@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import http from 'services/http';
+import Notify from 'util/notifier';
 
 import { insertImage } from 'reduxConf/actions/userActions';
 
@@ -27,7 +28,7 @@ class ImageUpload extends Component {
       }
     
       handleClose() {
-        this.setState({ show: false });
+        this.setState({ show: false, age: null,  image: null, imageURL: null});
       }
     
       handleShow() {
@@ -61,9 +62,7 @@ class ImageUpload extends Component {
               this.props.insertImage(image);
           })
           .catch(err => {
-              this.setState({
-                  error: true
-              });
+              Notify.createNotification('error', 'Image Upload', 'Your missing parameters!');
           });
     }
     
