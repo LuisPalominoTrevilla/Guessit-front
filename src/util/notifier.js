@@ -16,6 +16,8 @@ export default {
             case 'error':
                 NotificationManager.error(text, title, time);
                 break;
+            default:
+                return;
         }
     }
 }

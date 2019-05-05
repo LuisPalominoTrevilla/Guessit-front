@@ -110,6 +110,7 @@ class Register extends Component {
                     password: ''
                 })
                 this.props.showHideUserForm(this.state.show);
+                Notify.createNotification('success', 'Usuario creado con éxitoe', 'Puede usar sus credenciales para iniciar sesión');
             })
             .catch(err => {
                 Notify.createNotification('error', 'Error al crear usuario', err);
@@ -166,7 +167,7 @@ class Register extends Component {
                     <div className="py-2">
                         <i className="fa fa-user icon pr-2"></i>
                         <input 
-                            placeholder="Usuario"
+                            placeholder="Nombre de usuario"
                             className="input-form" 
                             id="username" 
                             value={this.state.username}
