@@ -19,6 +19,7 @@ class UserForm extends Component {
         this.onClickRegister = this.onClickRegister.bind(this)
         this.onClickLogin = this.onClickLogin.bind(this);
     }
+    
     setWrapperRef(node) {
         this.wrapperRef = node;
     }
@@ -36,6 +37,7 @@ class UserForm extends Component {
             if(this.props.showUserForm.show) {
                 this.props.showHideUserForm(false);
             }
+            this.onClickRegister();
             this.onClickLogin();
         }
     }
@@ -65,14 +67,10 @@ class UserForm extends Component {
                 <div className = "userform-nav">
                     <ul className="navbar-nav d-flex flex-row">
                         <li>
-                            <a> 
-                                <div className = {this.state.showLogin ? "userform-labels px-3 ml-2 mr-2 selected" : "userform-labels px-3 ml-2 mr-2" } onClick={(e) => this.onClickLogin()}>Log In </div>
-                            </a>
+                                <div className = {this.state.showLogin ? "userform-labels px-3 ml-2 mr-2 selected" : "userform-labels px-3 ml-2 mr-2" } onClick={(e) => this.onClickLogin()}>Iniciar sesión</div>
                         </li>
                         <li>
-                            <a> 
-                                <div className = {this.state.showRegister ? "userform-labels px-3 ml-2 mr-2 selected" : "userform-labels px-3 ml-2 mr-2" } onClick={(e) => this.onClickRegister()}>Register </div>
-                            </a>
+                                <div className = {this.state.showRegister ? "userform-labels px-3 ml-2 mr-2 selected" : "userform-labels px-3 ml-2 mr-2" } onClick={(e) => this.onClickRegister()}>Registro</div>
                         </li>
                     </ul>
                 </div>

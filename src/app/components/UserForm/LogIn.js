@@ -40,11 +40,13 @@ class LogIn extends Component {
             username: e.target.value
         })
     }
+
     handleChangePassword(e){
         this.setState({
             password: e.target.value
           })
     }
+
     onSubmitUser(e) {
         e.preventDefault();
         this.setState({
@@ -103,7 +105,7 @@ class LogIn extends Component {
                 <button 
                     type="submit" 
                     className="submit-button px-5 py-2"
-                    onClick ={this.onSubmitUser}> SUBMIT 
+                    onClick ={this.onSubmitUser}> Iniciar sesión
                 </button>
             </div>
         )
