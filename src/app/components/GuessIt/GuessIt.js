@@ -6,6 +6,7 @@ import http from 'services/http';
 import { fetchAllImages, removeImage } from 'reduxConf/actions/guessitActions';
 
 import './guessit.scss';
+import Notify from 'util/notifier';
 
 class Image extends Component {
 
@@ -39,14 +40,14 @@ class Image extends Component {
                 }, 1500);
             })
             .catch(err => {
-                console.log(err);
+                Notify.createNotification('error', 'Error al calificar imágen', err);
             });
     }
 
     handleAgeChange(e) {
         const numRegexp = /^[0-9]+$/;
         const input = e.target.value;
-        if (input == "" || numRegexp.test(input) && input > 0 && input < 110) {
+        if (input === "" || (numRegexp.test(input) && input > 0 && input < 110)) {
             this.setState({
                 age: input
             });
@@ -108,6 +109,7 @@ const RenderImages = ({ images, removeImage }) => {
 class GuessIt extends Component {
     constructor(props) {
         super(props);
+        this.state = {};
     }
 
     componentWillMount() {
