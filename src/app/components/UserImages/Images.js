@@ -7,6 +7,11 @@ import { Pie } from 'react-chartjs-2';
 import './images.scss';
 
 const options = {
+    title: {
+        display: true,
+        text: 'Unregister Results',
+        fontColor: "white",
+    },
     maintainAspectRatio: false,
     responsive: false,
     legend: {
@@ -18,6 +23,22 @@ const options = {
     }
   }
 
+  const options1 = {
+    title: {
+        display: true,
+        text: 'Register Results',
+        fontColor: "white",
+    },
+    maintainAspectRatio: false,
+    responsive: false,
+    legend: {
+      position: 'bottom',
+      labels: {
+        boxWidth: 10,
+        fontColor: "white",
+      }
+    }
+  }
 function Image(props) {
     const data = {
         labels: [
@@ -48,13 +69,16 @@ function Image(props) {
             <div className="image-container">
                 <img src={ props.imageURL } alt="Imágen de usuario" className="user-image" />
                 <div className="overlay-image"> 
+                    <div className="age">Age: {props.age}</div>
                     <Pie
+                        className='chart-size'
                         data={data}
                         options={options}
                     />
                     <Pie
+                        className='chart-size'
                         data={data1}
-                        options={options}
+                        options={options1}
                     />
                 
                 </div>
@@ -71,7 +95,8 @@ function RenderImages({ images }) {
         correctUnregister={image.unregisteredGuesses.correct}
         quantityUnregister={image.unregisteredGuesses.quantity}
         correctRegister={image.registeredGuesses.correct}
-        quantityRegister={image.registeredGuesses.quantity}/>
+        quantityRegister={image.registeredGuesses.quantity}
+        age = {image.age}/>
 
     ));
 }
