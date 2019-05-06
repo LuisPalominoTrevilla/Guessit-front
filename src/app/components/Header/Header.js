@@ -46,9 +46,9 @@ class Header extends Component {
                 <div className={`${this.state.showMenu ? 'no-header-menu' : 'header-menu-tablet'} ${this.state.isInitial ? '' : 'enable-sidenav-transition'}`}><div className="sidenav-header"></div></div>
                 <i className={this.state.showMenu ? 'fa fa-bars icon-header menu-bar' : 'fa fa-bars icon-header menu-bar icon-above'} onClick={(e) => this.onClickMenu()} value= {this.state.showMenu} ></i>
                 <div className="tittle px-3">GuessIt!</div>
-                <i ref={this.setWrapperRef} className={this.props.user.user.image ? ' d-none' : 'fa fa-user-circle-o icon-header mr-3'} onClick={(e) => this.onClickUserForm()}></i>
-                <Link to='/profile' className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'}>
-                <img className={this.props.user.user.image ? 'image rounder-circle mr-3' : 'd-none'} alt="imágen de perfil" src={this.props.user.user.image ? this.props.user.user.image : ''}></img>
+                <i ref={this.setWrapperRef} className={this.props.user.user.username ? ' d-none' : 'fa fa-user-circle-o icon-header mr-3'} onClick={(e) => this.onClickUserForm()}></i>
+                <Link to='/profile' className={this.props.user.user.image ? 'image rounder-circle mr-3' : this.props.user.user.username ? 'image rounder-circle mr-3' : 'd-none'}>
+                <img className={this.props.user.user.image ? 'image rounder-circle mr-3' : this.props.user.user.username ? 'image rounder-circle mr-3' : 'd-none'} alt="imágen de perfil" src={this.props.user.user.image ? this.props.user.user.image : "https://www.allafricanhits.com/wp-content/uploads/2017/11/user-default-avatar.png"}></img>
                 </Link>
                 <UserForm checkHeaderClick={(evt) => this.checkHeaderClick(evt)}/>
                 <NotificationContainer/>
