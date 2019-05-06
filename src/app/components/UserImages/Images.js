@@ -9,7 +9,7 @@ import './images.scss';
 const options = {
     title: {
         display: true,
-        text: 'Unregister Results',
+        text: 'Resultados No Registrados',
         fontColor: "white",
     },
     maintainAspectRatio: false,
@@ -26,7 +26,7 @@ const options = {
   const options1 = {
     title: {
         display: true,
-        text: 'Register Results',
+        text: 'Resultados Registrados',
         fontColor: "white",
     },
     maintainAspectRatio: false,
@@ -69,7 +69,7 @@ function Image(props) {
             <div className="image-container">
                 <img src={ props.imageURL } alt="Imágen de usuario" className="user-image" />
                 <div className="overlay-image"> 
-                    <div className="age">Age: {props.age}</div>
+                    <div className="age">Edad: {props.age}</div>
                     <Pie
                         className='chart-size'
                         data={data}
