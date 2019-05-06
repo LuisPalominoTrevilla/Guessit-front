@@ -62,7 +62,7 @@ class ImageUpload extends Component {
               this.props.insertImage(image);
           })
           .catch(err => {
-              Notify.createNotification('error', 'Image Upload', 'Your missing parameters!');
+              Notify.createNotification('error', 'Agregar Imagen', 'Falta completar todos los campos!');
           });
     }
     
@@ -77,22 +77,22 @@ class ImageUpload extends Component {
     
             <Modal show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Add a New Image</Modal.Title>
+                <Modal.Title>Agregar una Imagen</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <form> 
                     <div className="form-group">
                         <img src={this.state.imageURL} alt="" className="before-image"/>
-                        <p className="input-labels">Input an Image</p>
+                        <p className="input-labels">Ingrese una Imagen</p>
                         <input type="file" className="form-control-file" id="file" onChange={this.handleChangeImage}/>
                     </div>
                 </form>
-                <p className="input-labels">Input the age!</p>
-                <input className="form-control" id="imageAge" placeholder="AGE" onChange={this.handleChangeAge}></input>
+                <p className="input-labels">Ingrese la edad!</p>
+                <input className="form-control" id="imageAge" placeholder="EDAD" onChange={this.handleChangeAge}></input>
               </Modal.Body>
               <Modal.Footer>
                 <button className="submit-button py-2 px-3" onClick={this.onSubmitImage}>
-                  Submit
+                  Agregar
                 </button>
               </Modal.Footer>
             </Modal>
