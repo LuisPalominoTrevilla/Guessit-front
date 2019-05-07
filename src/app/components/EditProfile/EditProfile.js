@@ -115,9 +115,9 @@ class EditProfile extends Component {
                 <p className="input-labels">Ingrese el Correo!</p>
                 <input className="form-control" id="email" defaultValue={this.props.user.user.email} onChange={this.handleChangeEmail}></input>
                 <p className="input-labels">Ingrese Genero!</p>
-                <input className="form-control" id="genero" defaultValue={this.props.user.user.gender} onChange={this.handleChangeGender}></input>
+                <input className="form-control" id="gender" defaultValue={this.props.user.user.gender} onChange={this.handleChangeGender}></input>
                 <p className="input-labels">Ingrese Edad!</p>
-                <input className="form-control" id="genero" defaultValue={this.props.user.user.age} onChange={this.handleChangeAge}></input>
+                <input type='number' className="form-control" id="age" defaultValue={this.props.user.user.age} onChange={this.handleChangeAge}></input>
                 
               </Modal.Body>
               <Modal.Footer>
