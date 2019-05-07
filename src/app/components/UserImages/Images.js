@@ -7,6 +7,11 @@ import { Pie } from 'react-chartjs-2';
 import './images.scss';
 
 const options = {
+    title: {
+        display: true,
+        text: 'Resultados No Registrados',
+        fontColor: "white",
+    },
     maintainAspectRatio: false,
     responsive: false,
     legend: {
@@ -18,6 +23,22 @@ const options = {
     }
   }
 
+  const options1 = {
+    title: {
+        display: true,
+        text: 'Resultados Registrados',
+        fontColor: "white",
+    },
+    maintainAspectRatio: false,
+    responsive: false,
+    legend: {
+      position: 'bottom',
+      labels: {
+        boxWidth: 10,
+        fontColor: "white",
+      }
+    }
+  }
 function Image(props) {
     const data = {
         labels: [
@@ -48,13 +69,16 @@ function Image(props) {
             <div className="image-container">
                 <img src={ props.imageURL } alt="Imágen de usuario" className="user-image" />
                 <div className="overlay-image"> 
+                    <div className="age">Edad: {props.age}</div>
                     <Pie
+                        className='chart-size'
                         data={data}
                         options={options}
                     />
                     <Pie
+                        className='chart-size'
                         data={data1}
-                        options={options}
+                        options={options1}
                     />
                 
                 </div>
@@ -68,11 +92,11 @@ function RenderImages({ images }) {
     return images.map(image => (
         <Image key={image.id} 
         imageURL={`${process.env.REACT_APP_IMAGES_BASE_URL}${image.url}`}
-        correctUnregister={image.unregisteredGuesses.correct}
-        quantityUnregister={image.unregisteredGuesses.quantity}
-        correctRegister={image.registeredGuesses.correct}
-        quantityRegister={image.registeredGuesses.quantity}/>
-
+        correctUnregister={image.unregisteredGuesses ? image.unregisteredGuesses.correct : 0}
+        quantityUnregister={image.unregisteredGuesses ? image.unregisteredGuesses.quantity : 0}
+        correctRegister={image.registeredGuesses ? image.registeredGuesses.correct : 0}
+        quantityRegister={image.registeredGuesses ? image.registeredGuesses.quantity: 0}
+        age={image.age}/>
     ));
 }
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import GuessIt from './GuessIt/GuessIt';
-import GStats from './GStats';
 import Images from 'app/components/UserImages/Images';
 import Profile from './Profile/Profile';
 
@@ -36,7 +35,6 @@ class Wrapper extends Component {
         return (
             <div className={`main-container ${(this.state.width <= 768) ? 'menu-not-visible' : 'menu-visible'}` }>
                 <Route exact path='/' component={GuessIt} />
-                <Route path='/g-stats' component={GStats} />
                 <Route path='/images' component={Images} />
                 <Route path='/profile' component={Profile} />
             </div>
