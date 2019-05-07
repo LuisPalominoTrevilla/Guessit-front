@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import GuessIt from './GuessIt/GuessIt';
 import GStats from './GStats';
 import Images from 'app/components/UserImages/Images';
-import Profile from './Profile';
+import Profile from './Profile/Profile';
 
 import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router';

@@ -10,10 +10,16 @@ class Profile extends Component {
             <div className='profile-title'>
                 {this.props.user.user.name} 
             </div>
-            <div className='profile-image'>
-                <img src={this.props.user.user.image}/>
+            <div className='contain-image'>
+                <div className='profile-image'>
+                    <img src={this.props.user.user.image}/>
+                </div>
             </div>
-            
+            <div className='editable-profile'>
+                <div>{this.props.user.user.username}</div>
+                <div>{this.props.user.user.email}</div>
+            </div>
+            <i class="fas fa-pencil-alt"></i>
             </div>
             
         )
