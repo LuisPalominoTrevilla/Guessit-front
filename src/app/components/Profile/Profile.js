@@ -12,7 +12,7 @@ class Profile extends Component {
             </div>
             <div className='contain-image'>
                 <div className='profile-image'>
-                    <img alt='' src={this.props.user.user.image ? this.props.user.user.image: ''}/>
+                    <img alt='' src={this.props.user.user.image ? this.props.user.user.image: 'https://www.allafricanhits.com/wp-content/uploads/2017/11/user-default-avatar.png'}/>
                 </div>
             </div>
             <div className='editable-profile'>
