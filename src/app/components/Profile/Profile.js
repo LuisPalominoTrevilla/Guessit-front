@@ -8,7 +8,7 @@ class Profile extends Component {
         return (
             <div className='profile-contain'> 
             <div className='profile-title'>
-                {this.props.user.user.name} 
+                {this.props.user.user.name}, {this.props.user.user.lastName}
             </div>
             <div className='contain-image'>
                 <div className='profile-image'>
@@ -16,8 +16,9 @@ class Profile extends Component {
                 </div>
             </div>
             <div className='editable-profile'>
-                <div>{this.props.user.user.username}</div>
-                <div>{this.props.user.user.email}</div>
+                <div> Username: {this.props.user.user.username}</div>
+                <div> Email: {this.props.user.user.email}</div>
+                <div> Gender: {this.props.user.user.gender}</div>
             </div>
             <i class="fas fa-pencil-alt"></i>
             </div>
