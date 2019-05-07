@@ -55,14 +55,6 @@ class Menu extends Component {
                                 </div>
                             </Link>
                         </li>
-                        <li className ={this.props.location.pathname === '/g-stats' ? 'nav-item py-1 active' : 'nav-item py-1'} >
-                            <Link to="/g-stats">
-                                <div className ="nav-link d-flex mx-2 2"> 
-                                    <i className="fa fa-bar-chart icon-mobile mx-2"></i>
-                                    <div className ="menu-labels">Global Statistics</div>
-                                </div>
-                            </Link>
-                        </li>
                         <div className={this.props.user.user.username ? 'd-block': 'd-none'}>
                             <li className={this.props.location.pathname === '/images' ? 'nav-item py-1 active' : 'nav-item py-1'}>
                                 <Link to="/images">
