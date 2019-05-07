@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 2rem 20rem 0rem 20rem;
+    margin: 2rem 20rem 2rem 20rem;
     background-color: $menu-colors;
     border-radius: 1rem;
     
@@ -31,18 +31,41 @@
     .editable-profile {
         color: white;
         font-weight: 500;
-        margin-bottom: 2rem;
         text-align: left;
     }
 
     .fa-pencil-alt {
         align-self: flex-end;
         color: $menu-colors;
-        margin: 2rem;
         padding: 1rem;
         background-color: $cards-background;
         border-radius: 2rem;
         font-size: 1.5rem;
     }
 
+}
+
+@media (max-width: $max-width-small-laptop) {
+    .profile-contain {
+        margin: 2rem 10rem 2rem 10rem;
+        .profile-image {
+            height: 15rem;
+            width: 15rem;
+        }
+    }
+}
+
+@media (max-width: $max-width-tablet) {
+    .profile-contain {
+        .profile-image {
+            height: 10rem;
+            width: 10rem;
+        }
+    }
+}
+
+@media (max-width: $max-with-mobile) {
+    .profile-contain {
+        margin: 2rem 2rem 2rem 2rem;
+    }
 }

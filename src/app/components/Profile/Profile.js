@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Profile.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import EditProfile from '../EditProfile/EditProfile';
 
 class Profile extends Component {
     render () {
@@ -19,8 +20,9 @@ class Profile extends Component {
                 <div> Username: {this.props.user.user.username}</div>
                 <div> Email: {this.props.user.user.email}</div>
                 <div> Gender: {this.props.user.user.gender}</div>
+                <div> Age: {this.props.user.user.age}</div>
             </div>
-            <i class="fas fa-pencil-alt"></i>
+            <EditProfile/>
             </div>
             
         )
