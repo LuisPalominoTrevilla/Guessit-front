@@ -68,10 +68,10 @@ function RenderImages({ images }) {
     return images.map(image => (
         <Image key={image.id} 
         imageURL={`${process.env.REACT_APP_IMAGES_BASE_URL}${image.url}`}
-        correctUnregister={image.unregisteredGuesses.correct}
-        quantityUnregister={image.unregisteredGuesses.quantity}
-        correctRegister={image.registeredGuesses.correct}
-        quantityRegister={image.registeredGuesses.quantity}/>
+        correctUnregister={image.unregisteredGuesses ? image.unregisteredGuesses.correct : 0}
+        quantityUnregister={image.unregisteredGuesses ? image.unregisteredGuesses.quantity : 0}
+        correctRegister={image.registeredGuesses ? image.registeredGuesses.correct : 0}
+        quantityRegister={image.registeredGuesses ? image.registeredGuesses.quantity: 0}/>
 
     ));
 }
