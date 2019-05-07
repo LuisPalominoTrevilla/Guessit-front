@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './Profile.scss';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -12,7 +12,7 @@ class Profile extends Component {
             </div>
             <div className='contain-image'>
                 <div className='profile-image'>
-                    <img src={this.props.user.user.image}/>
+                    <img alt='' src={this.props.user.user.image ? this.props.user.user.image: ''}/>
                 </div>
             </div>
             <div className='editable-profile'>
