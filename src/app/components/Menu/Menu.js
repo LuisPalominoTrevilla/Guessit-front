@@ -48,9 +48,9 @@ class Menu extends Component {
                 <div className ='sidebar'  >
                     <ul className="navbar-nav">
                         <li className ={this.props.location.pathname === '/' ? 'nav-item py-1 active' : 'nav-item py-1'} >
-                            <Link to="/">
-                                <div className ="nav-link d-flex mx-2 1"> 
-                                    <i className="fa fa-check icon-mobile mx-2"></i>
+                            <Link to="/" >
+                                <div className ="nav-link d-flex mx-2 1 " tooltip="Home page" tooltip-position="right"> 
+                                    <i className="fa fa-check icon-mobile mx-2" ></i>
                                     <div className ="menu-labels" >GuessIt!</div>
                                 </div>
                             </Link>
@@ -58,7 +58,7 @@ class Menu extends Component {
                         <div className={this.props.user.user.username ? 'd-block': 'd-none'}>
                             <li className={this.props.location.pathname === '/images' ? 'nav-item py-1 active' : 'nav-item py-1'}>
                                 <Link to="/images">
-                                    <div className="nav-link d-flex mx-2 3" > 
+                                    <div className="nav-link d-flex mx-2 3" tooltip="Images" tooltip-position="right"> 
                                         <i className="fa fa-picture-o icon-mobile mx-2"></i>
                                         <div className="menu-labels">Your Images</div>
                                     </div>
@@ -67,7 +67,7 @@ class Menu extends Component {
                         </div>
                         <div className={this.props.user.user.username ? 'd-block': 'd-none'}>
                             <li className="nav-item py-1" onClick={() => this.logout()}>
-                                <div className="nav-link d-flex mx-2 3" > 
+                                <div className="nav-link d-flex mx-2 3" tooltip="Log out" tooltip-position="right"> 
                                     <i className="fa fa-sign-out icon-mobile mx-2"></i>
                                     <div className="menu-labels">Logout</div>
                                 </div>
